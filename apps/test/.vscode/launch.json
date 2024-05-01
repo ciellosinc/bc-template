@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Dev-Sandbox",
+            "environmentType": "Sandbox",
+            "tenant": "33eebce3-9b36-4460-b991-c00c519beb5e",
+            "environmentName": "Dev-Sandbox",
+            "type": "al",
+            "request": "launch",
+            "breakOnError": true,
+            "breakOnRecordWrite": false,
+            "launchBrowser": true,
+            "enableSqlInformationDebugger": true,
+            "enableLongRunningSqlStatements": true,
+            "longRunningSqlStatementsThreshold": 500,
+            "numberOfSqlStatements": 10,
+            "schemaUpdateMode": "Synchronize"
+        }		
+    ]
+}

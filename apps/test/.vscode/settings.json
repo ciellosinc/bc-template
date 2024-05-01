@@ -1,0 +1,36 @@
+{
+    "al.backgroundCodeAnalysis": true,
+    "al.codeAnalyzers": [
+        "${CodeCop}",
+        "${UICop}",
+        // TODO Set a correct scope for the extension AppSourceCop or PerTenantExtensionCop
+        "${AppSourceCop}",
+        "${PerTenantExtensionCop}"
+    ],
+    "al.enableCodeAnalysis": true,
+    "al.enableCodeActions": true,
+    "al.packageCachePath": "./.alpackages",
+    "al.ruleSetPath": "./.codeAnalysis/ruleset.json",
+    // TODO Set a correct Objects Prefix
+    "CRS.ObjectNamePrefix": "PREFIX",
+    "CRS.AlSubFolderName": "src",
+    "CRS.ExtensionObjectNamePattern": "<Prefix> <BaseNameShort>",
+    "CRS.FileNamePattern": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+    "CRS.FileNamePatternExtensions": "<ObjectNameShort>.<ObjectTypeShortPascalCase>.al",
+    "CRS.FileNamePatternPageCustomizations": "<ObjectNameShort>.ObjectTypeShortPascalCase>.al",
+    "CRS.RenameWithGit": false,
+    "CRS.ObjectNameSuffix": "",
+    "alOutline.codeCleanupActions": [
+        "RemoveWithStatements",
+        "RemoveUnusedVariables",
+        "RemoveBeginEnd",
+        "RemoveEmptySections",
+        "RemoveEmptyLines",
+        "AddMissingParentheses",
+        "SortProperties",
+        "SortVariables",
+        "FixKeywordsCase",
+        "FixIdentifiersCase",
+        "ConvertObjectIdsToNames"
+    ]
+}

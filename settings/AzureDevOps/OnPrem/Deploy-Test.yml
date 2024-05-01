@@ -1,0 +1,50 @@
+trigger:
+  batch: true
+  branches:
+    include:
+    - master
+  paths:
+    include:
+    - apps
+    exclude:
+    - apps/gprcustom/app.json
+    - apps/gprcustom/.alpackages
+    - apps/integrationepsibc/app.json
+    - apps/integrationepsibc/.alpackages
+
+pool:
+  name: 'Pool name'
+  
+variables:
+  serverInstance: 'BC170_Test'
+  
+stages:
+  - stage: Build
+    jobs:
+      - job: BuildJob
+        timeoutInMinutes: 30
+        steps:
+          - checkout: self
+            submodules: true
+            clean: true
+            persistCredentials: true      
+          - task: CmdLine@2
+            displayName: Checkout $(Build.SourceBranchName)
+            inputs:
+              script: 'git checkout -B $(Build.SourceBranchName) origin/$(Build.SourceBranchName) --track'              
+          - task: PowerShell@2
+            name: BuildApp
+            displayName: "Build app"
+            inputs:
+              targetType: filePath
+              filePath: './scripts\Invoke-TestPipeline.ps1'
+              arguments: '-ServerInstance "$(serverInstance)"'
+              failOnStderr: true
+            env:
+                SYSTEM_ACCESSTOKEN: $(system.accesstoken)              
+
+          - task: PublishBuildArtifacts@1
+            displayName: "Publish Artifacts"
+            inputs:
+              PathtoPublish: "$(Build.ArtifactStagingDirectory)"
+              ArtifactName: test

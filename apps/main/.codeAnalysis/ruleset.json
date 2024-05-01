@@ -1,0 +1,416 @@
+{
+    "name": "Company ruleset",
+    "description": "Company custom ruleset",
+    "rules": [
+        {
+            "id": "AW0001",
+            "action": "Error",
+            "justification": "The Web client does not support displaying the Request page of XMLPorts."
+        },
+        {
+            "id": "AW0002",
+            "action": "Error",
+            "justification": "The Web client does not support displaying both Actions and Fields in Cue Groups. Only Fields will be displayed."
+        },
+        {
+            "id": "AW0003",
+            "action": "Error",
+            "justification": "The Web client does not support displaying Repeater controls containing Parts."
+        },
+        {
+            "id": "AW0004",
+            "action": "Error",
+            "justification": "A Blob cannot be used as a source expression for a page field."
+        },
+        {
+            "id": "AW0005",
+            "action": "Error",
+            "justification": "Actions should use the Image property."
+        },
+        {
+            "id": "AW0006",
+            "action": "Error",
+            "justification": "Pages and reports should use the UsageCategory and ApplicationArea properties to be searchable."
+        },
+        {
+            "id": "AW0008",
+            "action": "Error",
+            "justification": "The Web client does not support displaying Repeater controls in pages of type Card, Document, and ListPlus."
+        },
+        {
+            "id": "AW0009",
+            "action": "Warning",
+            "justification": "Using a Blob with subtype Bitmap on a page field is deprecated. Instead use the Media/MediaSet data types."
+        },
+        {
+            "id": "AW0010",
+            "action": "Error",
+            "justification": "A Repeater control used on a List page must be defined at the beginning of the area(Content) section."
+        },
+        {
+            "id": "AW0011",
+            "action": "Error",
+            "justification": "Add PromotedOnly=true to some or all promoted actions to avoid identical actions from appearing in both the promoted and default sections of the command bar."
+        },
+        {
+            "id": "AW0013",
+            "action": "Error",
+            "justification": "Groups containing promoted actions should not be hidden."
+        },
+        {
+            "id": "AS0075",
+            "action": "Error",
+            "justification": "Obsolete Reason must be set."
+        },
+        {
+            "id": "AS0081",
+            "action": "Hidden",
+            "justification": "InternalsVisibleTo should not be used as a security feature."
+        },
+        {
+            "id": "AS0087",
+            "action": "Error",
+            "justification": "Translations of enum value captions must not contain commas"
+        },
+        {
+            "id": "AS0094",
+            "action": "Error",
+            "justification": "Permission Sets should not be defined in XML files."
+        },
+        {
+            "id": "AS0099",
+            "action": "Error",
+            "justification": "The member ID should be within the allowed range"
+        },
+        {
+            "id": "AS0103",
+            "action": "Error",
+            "justification": "Table definitions must have a matching permission set."
+        },
+        {
+            "id": "AA0001",
+            "action": "Error",
+            "justification": "There must be exactly one space character on each side of a binary operator such as := + - AND OR =."
+        },
+        {
+            "id": "AA0002",
+            "action": "Error",
+            "justification": "There must be no space character."
+        },
+        {
+            "id": "AA0003",
+            "action": "Error",
+            "justification": "There must be exactly one space character between the NOT operator and its argument."
+        },
+        {
+            "id": "AA0005",
+            "action": "Error",
+            "justification": "Only use BEGIN..END to enclose compound statements."
+        },
+        {
+            "id": "AA0008",
+            "action": "Error",
+            "justification": "Function calls should have parenthesis even if they do not have any parameters."
+        },
+        {
+            "id": "AA0013",
+            "action": "Error",
+            "justification": "When BEGIN follows THEN, ELSE, DO, it should be on the same line, preceded by one space character."
+        },
+        {
+            "id": "AA0018",
+            "action": "Error",
+            "justification": "The END, IF, REPEAT, UNTIL, FOR, WHILE, and CASE statement should always start a line."
+        },
+        {
+            "id": "AA0021",
+            "action": "Error",
+            "justification": "Variable declarations should be ordered by type."
+        },
+        {
+            "id": "AA0022",
+            "action": "Error",
+            "justification": "Substitute the IF THEN ELSE structure with a CASE."
+        },
+        {
+            "id": "AA0040",
+            "action": "Error",
+            "justification": "Avoid using nested WITH statements."
+        },
+        {
+            "id": "AA0073",
+            "action": "Error",
+            "justification": "The name of temporary variable must be prefixed with Temp."
+        },
+        {
+            "id": "AA0074",
+            "action": "Error",
+            "justification": "TextConst and Label variable names should have an approved suffix."
+        },
+        {
+            "id": "AA0087",
+            "action": "Error",
+            "justification": "Lowering permissions should only be used in tests"
+        },
+        {
+            "id": "AA0100",
+            "action": "Error",
+            "justification": "Do not have identifiers with quotes in the name."
+        },
+        {
+            "id": "AA0101",
+            "action": "Error",
+            "justification": "Use camel case property values in pages of type API."
+        },
+        {
+            "id": "AA0102",
+            "action": "Error",
+            "justification": "Use camel case name for field controls in pages of type API."
+        },
+        {
+            "id": "AA0103",
+            "action": "Error",
+            "justification": "Use camel case property values in queries of type API."
+        },
+        {
+            "id": "AA0104",
+            "action": "Error",
+            "justification": "Use camel case name for column controls in queries of type API."
+        },
+        {
+            "id": "AA0131",
+            "action": "Error",
+            "justification": "String parameters must match placeholders."
+        },
+        {
+            "id": "AA0136",
+            "action": "Error",
+            "justification": "Do not write code that will never be hit."
+        },
+        {
+            "id": "AA0137",
+            "action": "Error",
+            "justification": "Do not declare variables that are unused."
+        },
+        {
+            "id": "AA0139",
+            "action": "Error",
+            "justification": "Do not assign a text to a target with smaller size."
+        },
+        {
+            "id": "AA0161",
+            "action": "Error",
+            "justification": "Only use AssertError in Test Codeunits."
+        },
+        {
+            "id": "AA0175",
+            "action": "Error",
+            "justification": "Only find record if you need to use it."
+        },
+        {
+            "id": "AA0181",
+            "action": "Error",
+            "justification": "The FindSet() or Find() methods must be used only in connection with the Next() method."
+        },
+        {
+            "id": "AA0189",
+            "action": "Error",
+            "justification": "Only use a correct values of ApplicationArea."
+        },
+        {
+            "id": "AA0194",
+            "action": "Error",
+            "justification": "Only write actions that have an effect."
+        },
+        {
+            "id": "AA0198",
+            "action": "Error",
+            "justification": "Do not use identical names for local and global variables."
+        },
+        {
+            "id": "AA0462",
+            "action": "Error",
+            "justification": "The CalcDate should only be used with DataFormula variables. Alternatively the string should be enclosed using the <> symbols."
+        },
+        {
+            "id": "AA0202",
+            "action": "Error",
+            "justification": "To avoid confusion, do not give local variables the same name as fields, methods, or actions in the same scope."
+        },
+        {
+            "id": "AA0203",
+            "action": "Error",
+            "justification": "To avoid confusion, do not give methods the same name as fields or actions in the same scope."
+        },
+        {
+            "id": "AA0204",
+            "action": "Error",
+            "justification": "To avoid confusion, do not give global variables the same name as fields, methods, or actions in the same scope."
+        },
+        {
+            "id": "AA0207",
+            "action": "Error",
+            "justification": "The EventSubscriber method must be local."
+        },
+        {
+            "id": "AA0211",
+            "action": "Error",
+            "justification": "Avoids a runtime error from using CalcFields on a field that is not a FlowField or a field of type Blob."
+        },
+        {
+            "id": "AA0213",
+            "action": "Error",
+            "justification": "Obsoleted object must have a state 'Pending' or 'Removed' and a justification specifying why this field is being obsoleted."
+        },
+        {
+            "id": "AA0216",
+            "action": "Error",
+            "justification": "Use a text constant for passing user messages and errors without concatenations."
+        },
+        {
+            "id": "AA0217",
+            "action": "Error",
+            "justification": "Use a text constant or label for format string in StrSubstNo."
+        },
+        {
+            "id": "AA0218",
+            "action": "Error",
+            "justification": "You must write a tooltip in the Tooltip property for all controls of type Action and Field that exist on page objects."
+        },
+        {
+            "id": "AA0221",
+            "action": "Error",
+            "justification": "You must specify a OptionCaption property for all fields which source expressions is not a table field."
+        },
+        {
+            "id": "AA0222",
+            "action": "Error",
+            "justification": "SIFT index should not be used on primary or unique key."
+        },
+        {
+            "id": "AA0223",
+            "action": "Error",
+            "justification": "The value of the OptionCaption property of Fields must be filled in."
+        },
+        {
+            "id": "AA0224",
+            "action": "Error",
+            "justification": "The count of option captions specified in the OptionCaption property is wrong."
+        },
+        {
+            "id": "AA0225",
+            "action": "Error",
+            "justification": "You must specify a caption in the Caption property for Fields that exist on page objects."
+        },
+        {
+            "id": "AA0226",
+            "action": "Error",
+            "justification": "The value of the Caption property of Fields must be filled in."
+        },
+        {
+            "id": "AA0228",
+            "action": "Error",
+            "justification": "The local method must be used; otherwise removed."
+        },
+        {
+            "id": "AA0231",
+            "action": "Error",
+            "justification": "StrSubstNo or string concatenation must not be used as a parameter in the Error method."
+        },
+        {
+            "id": "AA0232",
+            "action": "Warning",
+            "justification": "The FlowField of a table should be indexed."
+        },
+        {
+            "id": "AA0233",
+            "action": "Error",
+            "justification": "Use Get(), FindFirst() and FindLast() without Next() method."
+        },
+        {
+            "id": "AA0237",
+            "action": "Error",
+            "justification": "The name of non-temporary variables must not be prefixed with Temp."
+        },
+        {
+            "id": "AA0244",
+            "action": "Error",
+            "justification": "Do not use identical names for parameters and global variables."
+        },
+        {
+            "id": "AA0245",
+            "action": "Error",
+            "justification": "To avoid confusion, do not give parameters the same name as fields, methods, or actions in the same scope."
+        },
+        {
+            "id": "AA0470",
+            "action": "Error",
+            "justification": "Placeholders should have a comment explaining their content."
+        },
+        {
+            "id": "AL0432",
+            "action": "Warning",
+            "justification": "Table 'Invt. Posting Buffer' is marked for removal. Reason: This table will be marked as temporary."
+        },
+        {
+            "id": "LC0001",
+            "action": "Warning",
+            "justification": "FlowFields should not be editable."
+        },
+        {
+            "id": "LC0002",
+            "action": "Hidden",
+            "justification": "Commit() needs a comment to justify its existence. Either a leading or a trailing comment."
+        },
+        {
+            "id": "LC0003",
+            "action": "Error",
+            "justification": "Do not use an Object ID for properties or variable declarations."
+        },
+        {
+            "id": "LC0004",
+            "action": "Error",
+            "justification": "DrillDownPageId and LookupPageId must be filled in table when table is used in list page."
+        },
+        {
+            "id": "LC0005",
+            "action": "Error",
+            "justification": "The casing of variable/method usage must align with the definition."
+        },
+        {
+            "id": "LC0006",
+            "action": "Error",
+            "justification": "Fields with property AutoIncrement cannot be used in temporary table (TableType = Temporary)."
+        },
+        {
+            "id": "LC0010",
+            "action": "Hidden",
+            "justification": "Show warning about code metrics for each function or trigger if either cyclomatic complexity is 8 or greater or maintainability index 20 or lower."
+        },
+        {
+            "id": "LC0011",
+            "action": "Error",
+            "justification": "Every object needs to specify a value for the Access property. Either true or false. Optionally this can also be activated for table fields with the setting enableRule0011ForTableFields."
+        },
+        {
+            "id": "LC0012",
+            "action": "Error",
+            "justification": "Using hardcoded IDs in functions like Codeunit.Run() is not allowed."
+        },
+        {
+            "id": "LC0014",
+            "action": "Error",
+            "justification": "The Caption of permissionset objects should not exceed the maximum length."
+        },
+        {
+            "id": "LC0017",
+            "action": "Hidden",
+            "justification": "Writing to a FlowField is not common. Add a comment to explain this."
+        },
+        {
+            "id": "LC0018",
+            "action": "Hidden",
+            "justification": "Events in internal codeunits are not accessible to extensions and should therefore be avoided."
+        }
+    ]
+}

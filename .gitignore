@@ -1,0 +1,7 @@
+# Untracked files:
+**/.snapshots
+**/.vscode/.alcache
+**/.vscode/.altemplates
+**/.vscode/rad.json
+**/apps/*/*.app
+**/*.g.xlf
