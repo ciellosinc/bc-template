@@ -1,0 +1,180 @@
+@clientid = ClientIdTest
+@clientsecret = secret
+@scope = https://api.businesscentral.dynamics.com/.default
+@tenant = TenantIdTest
+@environmentName = Sandbox1
+@aPIPublisher = ciellos
+@aPIGroup = salesOrderApi
+@aPIVersion = v1.0
+@baseAPIUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/{{aPIPublisher}}/{{aPIGroup}}/{{aPIVersion}}
+@entitySetName = salesOrders
+@applicationFamily = 
+@applicationType = 
+
+###########################################################################
+#    ____      _                                   _        _              
+#   / ___| ___| |_    __ _  ___ ___ ___  ___ ___  | |_ ___ | | _____ _ __  
+#  | |  _ / _ \ __|  / _` |/ __/ __/ _ \/ __/ __| | __/ _ \| |/ / _ \ '_ \ 
+#  | |_| |  __/ |_  | (_| | (_| (_|  __/\__ \__ \ | || (_) |   <  __/ | | |
+#   \____|\___|\__|  \__,_|\___\___\___||___/___/  \__\___/|_|\_\___|_| |_|
+#
+###########################################################################
+# @name tokenrequest
+POST https://login.microsoftonline.com/{{tenant}}/oauth2/v2.0/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id={{clientid}}
+&client_secret={{clientsecret}}
+&scope={{scope}}
+###
+@token = {{tokenrequest.response.body.access_token}}
+###
+@baseUrl = https://api.businesscentral.dynamics.com
+##############################################################################
+### GET $metadata
+# @name $metadata
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/
+Authorization: Bearer {{token}}
+###
+#
+
+### GET companies
+# @name companies
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies
+Authorization: Bearer {{token}}
+#
+
+### Get environments
+# @name environments
+GET {{baseUrl}}/admin/v2.21/applications/environments
+Authorization: Bearer {{token}}
+#
+
+### Get application family environments
+# @name applicationFamilyEnvironments
+GET {{baseUrl}}/admin/v2.21/applications/{{applicationFamily}}/environments
+Authorization: Bearer {{token}}
+#
+
+### Get environment properties
+# @name environmentProperties
+GET {{baseUrl}}/admin/v2.21/applications/{applicationFamily}/environments/{environmentName}
+Authorization: Bearer {{token}}
+#
+
+### Get used storage of an environment by application family and name
+# @name usedStorage
+GET {{baseUrl}}/admin/v2.21/applications/{{applicationFamily}}/environments/{{environmentName}}/usedstorage
+Authorization: Bearer {{token}}
+#
+
+### Get used storage of all environments
+# @name usedStorageAll
+GET {{baseUrl}}/admin/v2.21/environments/usedstorage
+Authorization: Bearer {{token}}
+#
+
+### Get allowed quotas
+# @name allowedQuotas
+GET {{baseUrl}}/admin/v2.21/environments/quotas
+Authorization: Bearer {{token}}
+#
+
+### Get environment operations
+# @name environmentOperations
+GET {{baseUrl}}/admin/v2.21/applications/{{applicationType}}/environments/{{environmentName}}/operations 
+Authorization: Bearer {{token}}
+#
+
+### Get operations on all environments
+# @name allEnvironmentOperations
+GET {{baseUrl}}/admin/v2.21/applications/{{applicationType}}/environments/operations 
+Authorization: Bearer {{token}}
+#
+
+### PUT Create new environment
+@createUrl = {{baseUrl}}/admin/v2.21/applications/{{applicationFamily}}/environments/{{environmentName}}
+PUT {{createUrl}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "environmentType": string, // The type of environment to create (enum | "Production", "Sandbox")
+  "countryCode": string, // The country to create the environment within 
+  ("ringName": string), // Optional - The logical ring group to create the environment within. Currently only Sandbox type environments may be created in a 'Preview' ring. If not provided then the production ring will be used.
+  ("applicationVersion": Version), // Optional - The version of the application the environment should be created on. If not provided then the latest available version will be used.
+}
+###
+#
+
+### POST Copy environment
+@copyUrl = {{baseUrl}}/admin/v2.21/applications/{{applicationFamily}}/environments/{{environmentName}}/copy
+POST {{copyUrl}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "environmentName": string, // The name of the new environment.
+  "type": string // The type of environment to create. With API v2.8 and earlier, only the value "Sandbox" is supported.  
+}
+###
+#
+
+### Delete environment
+@deleteUrl = {{baseUrl}}/admin/v2.21/applications/{{applicationFamily}}/environments/{{environmentName}}
+DELETE {{deleteUrl}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "environmentName": string, // The name of the new environment.
+  "type": string // The type of environment to create. With API v2.8 and earlier, only the value "Sandbox" is supported.  
+}
+###
+#
+
+### POST Recover environment
+@recoverUrl = {{baseUrl}}/admin/v2.21/applications/{{applicationFamily}}/environments/{{environmentName}}/recover
+POST {{recoverUrl}}
+Authorization: Bearer {{token}}
+###
+#
+
+### POST Rename environment
+@renameUrl = {{baseUrl}}/admin/v2.21/applications/{{applicationFamily}}/environments/{{environmentName}}/rename
+POST {{renameUrl}}
+Authorization: Bearer {{token}}
+###
+#
+
+### POST Restore environment
+@restoreUrl = {{baseUrl}}/admin/v2.21/applications/{{applicationFamily}}/environments/{{environmentName}}/restore
+POST {{restoreUrl}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ 
+  "EnvironmentName": "x-restored", // Mandatory. The name of the new environment that will be created as the result of the resore operation. 
+  "EnvironmentType": "production", // Mandatory. The type of the new environment. 
+  "PointInTime": "2021-04-22T20:00:00Z", // Mandatory. The point in time to which to restore the environment. Must be in ISO 8601 format in UTC. 
+  "SkipInstallingPTEs": true, // Optional, default is false. Used to uninstall PTEs on the environment created as part of the restore.
+  "SkipInstallingThirdPartyGlobalApps": true, // Optional, default is false. Used to uninstall all third-party AppSource apps from the created environment as part of the restore.
+  "SkipEnvironmentCleanup": true // Optional, default is false. Used to skip execution of codeunits that clear up selected tables and disable selected setups to avoid unexpected behavior of integrations with external systems.
+} 
+###
+#
+
+### POST Link Power Platform environment
+@linkUrl = {{baseUrl}}/admin/v2.21/bap/applications/{{applicationFamily}}/environments/{{environmentName}}/linkEnvironment?powerPlatformEnvironmentId={id}
+POST {{linkUrl}}
+Authorization: Bearer {{token}}
+###
+#
+
+### POST Unlink Power Platform environment
+@unlinkUrl = {{baseUrl}}/admin/v2.21/bap/applications/{{applicationFamily}}/environments/{{environmentName}}/unlinkEnvironment?powerPlatformEnvironmentId={id}
+POST {{unlinkUrl}}
+Authorization: Bearer {{token}}
+###
+#
