@@ -1,0 +1,92 @@
+@clientid = ClientIdTest
+@clientsecret = secret
+@scope = https://api.businesscentral.dynamics.com/.default
+@tenant = TenantIdTest
+@environmentName = Sandbox1
+@aPIPublisher = ciellos
+@aPIGroup = salesOrderApi
+@aPIVersion = v1.0
+@baseAPIUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/{{aPIPublisher}}/{{aPIGroup}}/{{aPIVersion}}
+@entitySetName = salesOrders
+@sourceEntraTenantId =
+
+###########################################################################
+#    ____      _                                   _        _              
+#   / ___| ___| |_    __ _  ___ ___ ___  ___ ___  | |_ ___ | | _____ _ __  
+#  | |  _ / _ \ __|  / _` |/ __/ __/ _ \/ __/ __| | __/ _ \| |/ / _ \ '_ \ 
+#  | |_| |  __/ |_  | (_| | (_| (_|  __/\__ \__ \ | || (_) |   <  __/ | | |
+#   \____|\___|\__|  \__,_|\___\___\___||___/___/  \__\___/|_|\_\___|_| |_|
+#
+###########################################################################
+# @name tokenrequest
+POST https://login.microsoftonline.com/{{tenant}}/oauth2/v2.0/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id={{clientid}}
+&client_secret={{clientsecret}}
+&scope={{scope}}
+###
+@token = {{tokenrequest.response.body.access_token}}
+###
+@baseUrl = https://api.businesscentral.dynamics.com
+##############################################################################
+### GET $metadata
+# @name $metadata
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/
+Authorization: Bearer {{token}}
+###
+#
+
+### GET companies
+# @name companies
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies
+Authorization: Bearer {{token}}
+#
+
+### GET outgoing transfers
+# @name outgoingTransfers
+GET {{baseUrl}}/admin/v2.21/transfers/outgoing
+Authorization: Bearer {{token}}
+#
+
+### GET incoming transfers
+# @name incomingTransfers
+GET {{baseUrl}}/admin/v2.21/transfers/incoming/{{sourceEntraTenantId}}
+Authorization: Bearer {{token}}
+#
+
+### POST Request an environment transfer
+@requestUrl = {{baseUrl}}/admin/v2.21/transfers/outgoing/applications/{applicationFamily}/environments/{{environmentName}}
+POST {{requestUrl}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "DestinationEntraTenantId": Guid, //The Microsoft Entra tenant ID of the destination tenant
+    "RunAt": datetime // The date and time at which the transfer should run, if accepted on the destination tenant. Expressed as UTC timestamp.
+}
+###
+#
+
+### POST Accept an incoming environment transfer
+@acceptUrl = {{baseUrl}}/admin/v2.21/transfers/incoming
+POST {{acceptUrl}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "SourceEnvironmentName" : string, // Name of the environment in the source tenant
+    "ApplicationFamily" : string, // Name of the Application Family of the environment
+    "SourceEntraTenantId" : Guid, // Microsoft Entra tenant ID of the source tenant
+    "DestinationEnvironmentName": string // Name the environment will have in the destination tenant
+}
+###
+#
+
+### DELETE Cancel a pending outgoing transfer
+@cancelUrl = {{baseUrl}}/admin/v2.21/transfers/outgoing/applications/{applicationFamily}/environments/{{environmentName}}
+DELETE {{cancelUrl}}
+Authorization: Bearer {{token}}
+###
+#

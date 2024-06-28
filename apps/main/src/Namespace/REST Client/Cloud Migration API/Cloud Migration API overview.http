@@ -1,0 +1,117 @@
+@clientid = ClientIdTest
+@clientsecret = secret
+@scope = https://api.businesscentral.dynamics.com/.default
+@tenant = TenantIdTest
+@environmentName = Sandbox1
+@aPIPublisher = ciellos
+@aPIGroup = salesOrderApi
+@aPIVersion = v1.0
+@baseAPIUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/{{aPIPublisher}}/{{aPIGroup}}/{{aPIVersion}}
+@entitySetName = salesOrders
+@aadtenant =
+@companyId = 
+@AnycompanyId = 
+
+###########################################################################
+#    ____      _                                   _        _              
+#   / ___| ___| |_    __ _  ___ ___ ___  ___ ___  | |_ ___ | | _____ _ __  
+#  | |  _ / _ \ __|  / _` |/ __/ __/ _ \/ __/ __| | __/ _ \| |/ / _ \ '_ \ 
+#  | |_| |  __/ |_  | (_| | (_| (_|  __/\__ \__ \ | || (_) |   <  __/ | | |
+#   \____|\___|\__|  \__,_|\___\___\___||___/___/  \__\___/|_|\_\___|_| |_|
+#
+###########################################################################
+# @name tokenrequest
+POST https://login.microsoftonline.com/{{tenant}}/oauth2/v2.0/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id={{clientid}}
+&client_secret={{clientsecret}}
+&scope={{scope}}
+###
+@token = {{tokenrequest.response.body.access_token}}
+###
+@baseUrl = https://api.businesscentral.dynamics.com/v2.0/{{environmentName}}
+##############################################################################
+### GET $metadata
+# @name $metadata
+GET  {{baseUrl}}/api/v2.0/
+Authorization: Bearer {{token}}
+###
+#
+
+### GET companies
+# @name companies
+GET  {{baseUrl}}/api/v2.0/companies
+Authorization: Bearer {{token}}
+#
+
+### GET cloud Migration companies
+# @name cloudMigration
+GET {{baseUrl}}/v2.0/{{aadtenant}}/{{environmentName}}/api/microsoft/cloudMigration/v1.0/companies({{companies.response.body.value[1].id}})/cloudMigrationCompanies
+Authorization: Bearer {{token}}
+#
+
+### GET cloud Migration status
+# @name cloudMigrationStatus
+GET {{baseUrl}}/v2.0/{{aadtenant}}/{{environmentName}}/api/microsoft/cloudMigration/v1.0/companies({{companies.response.body.value[1].id}})/cloudMigrationStatus
+Authorization: Bearer {{token}}
+#
+
+### PATCH Set up cloud migration
+@setupUrl = {{baseUrl}}/v2.0/{{aadtenant}}/{{environmentName}}/api/microsoft/cloudMigration/v1.0/companies({{companyId}})/setupCloudMigration({SetupRecordId})
+PATCH {{setupUrl}}
+If-Match: *
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{ 
+   "productId":"{ProductID}",
+   "sqlServerType":"{SqlServerType}",
+   "sqlConnectionString":"{SqlConnectionString}",
+    "runtimeName":"{RuntimeName}"
+}
+###
+#
+
+### PATCH Include company into the cloud migration
+@includeUrl = {{baseUrl}}/v2.0/{{aadtenant}}/{{environmentName}}/api/microsoft/cloudMigration/v1.0/companies({{companyId}})/cloudMigrationCompanies({{companyId}})
+PATCH {{includeUrl}}
+If-Match: *
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+      "replicate": true
+}
+###
+#
+
+### POST Start replication
+@startUrl = {{baseUrl}}/v2.0/{{aadtenant}}/{{environmentName}}/api/microsoft/cloudMigration/v1.0/companies({{companyId}})/cloudMigrationStatus/({LastStatusId})/Microsoft.NAV.runReplication
+POST {{startUrl}}
+Authorization: Bearer {{token}}
+###
+#
+
+### POST Refresh status
+@excludeUrl = {{baseUrl}}/v2.0/{{aadtenant}}/{{environmentName}}/api/microsoft/cloudMigration/v1.0/companies({{companyId}})/cloudMigrationCompanies({{AnycompanyId}})/Microsoft.NAV.refreshStatus
+POST {{excludeUrl}}
+Authorization: Bearer {{token}}
+###
+#
+
+### POST Trigger data upgrade
+@triggerUrl = {{baseUrl}}/v2.0/{{aadtenant}}/{{environmentName}}/api/microsoft/cloudMigration/v1.0/companies({{companyId}})/cloudMigrationCompanies({{AnycompanyId}})/Microsoft.NAV.runDataUpgrade
+POST {{excludeUrl}}
+Authorization: Bearer {{token}}
+###
+#
+
+### POST Disable the replication
+@excludeUrl = {{baseUrl}}/v2.0/{{aadtenant}}/{{environmentName}}/api/microsoft/cloudMigration/v1.0/companies({{companyId}})/cloudMigrationCompanies({{AnycompanyId}})/Microsoft.NAV.disableReplication
+POST {{excludeUrl}}
+Authorization: Bearer {{token}}
+###
+#
+
