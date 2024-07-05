@@ -1,14 +1,15 @@
-@clientid = ClientIdTest
-@clientsecret = secret
+@clientid = 7e930f8e-fac4-43a6-a242-3a4079ac4553
+@clientsecret = clientSecret
 @scope = https://api.businesscentral.dynamics.com/.default
-@tenant = TenantIdTest
+@tenant = ffb102fa-38b1-4d6b-ad59-1192df615c1e
 @environmentName = Sandbox1
 @aPIPublisher = ciellos
 @aPIGroup = salesOrderApi
 @aPIVersion = v1.0
 @baseAPIUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/{{aPIPublisher}}/{{aPIGroup}}/{{aPIVersion}}
 @entitySetName = salesOrders
-@sourceEntraTenantId =
+@sourceEntraTenantId = ffb102fa-38b1-4d6b-ad59-1192df615c1e
+@applicationFamily = BusinessCentral
 
 ###########################################################################
 #    ____      _                                   _        _              
@@ -31,19 +32,6 @@ grant_type=client_credentials
 ###
 @baseUrl = https://api.businesscentral.dynamics.com
 ##############################################################################
-### GET $metadata
-# @name $metadata
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/
-Authorization: Bearer {{token}}
-###
-#
-
-### GET companies
-# @name companies
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies
-Authorization: Bearer {{token}}
-#
-
 ### GET outgoing transfers
 # @name outgoingTransfers
 GET {{baseUrl}}/admin/v2.21/transfers/outgoing
@@ -57,7 +45,7 @@ Authorization: Bearer {{token}}
 #
 
 ### POST Request an environment transfer
-@requestUrl = {{baseUrl}}/admin/v2.21/transfers/outgoing/applications/{applicationFamily}/environments/{{environmentName}}
+@requestUrl = {{baseUrl}}/admin/v2.21/transfers/outgoing/applications/{{applicationFamily}}/environments/{{environmentName}}
 POST {{requestUrl}}
 Authorization: Bearer {{token}}
 Content-Type: application/json
@@ -85,7 +73,7 @@ Content-Type: application/json
 #
 
 ### DELETE Cancel a pending outgoing transfer
-@cancelUrl = {{baseUrl}}/admin/v2.21/transfers/outgoing/applications/{applicationFamily}/environments/{{environmentName}}
+@cancelUrl = {{baseUrl}}/admin/v2.21/transfers/outgoing/applications/{{applicationFamily}}/environments/{{environmentName}}
 DELETE {{cancelUrl}}
 Authorization: Bearer {{token}}
 ###

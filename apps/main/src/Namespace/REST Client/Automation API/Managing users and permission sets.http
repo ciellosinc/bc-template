@@ -1,7 +1,7 @@
-@clientid = ClientIdTest
-@clientsecret = secret
+@clientid = 7e930f8e-fac4-43a6-a242-3a4079ac4553
+@clientsecret = clientSecret
 @scope = https://api.businesscentral.dynamics.com/.default
-@tenant = TenantIdTest
+@tenant = ffb102fa-38b1-4d6b-ad59-1192df615c1e
 @environmentName = Sandbox1
 @aPIPublisher = ciellos
 @aPIGroup = salesOrderApi
@@ -32,35 +32,28 @@ grant_type=client_credentials
 ###
 @baseUrl = https://api.businesscentral.dynamics.com
 ##############################################################################
-### GET $metadata
-# @name $metadata
-GET  {{baseUrl}}/api/v2.0/
-Authorization: Bearer {{token}}
-###
-#
-
 ### GET companies
 # @name companies
-GET  {{baseUrl}}/api/v2.0/companies
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies
 Authorization: Bearer {{token}}
 #
 
 ### GET user groups
 # @name userGroup
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[1].id}})/userGroups
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/userGroups
 Authorization: Bearer {{token}}
 ###
 #
 
 ### GET permissionSets
 # @name permissionSets
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[1].id}})/permissionSets
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/permissionSets
 Authorization: Bearer {{token}}
 ###
 #
 
 ### POST Assign user permissions and user groups
-@assignUserUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[1].id}})/users({{userSecurityId}})/userGroupMembers
+@assignUserUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/users({{userSecurityId}})/userGroupMembers
 POST {{assignUserUrl}}
 Authorization: Bearer {{token}}
 Content-Type: application/json
@@ -73,7 +66,7 @@ Content-Type: application/json
 #
 
 ### POST Assign permission set
-@assignPermissionUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[1].id}})/users({{userSecurityId}})/userPermissions
+@assignPermissionUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/users({{userSecurityId}})/userPermissions
 POST {{assignPermissionUrl}}
 Authorization: Bearer {{token}}
 Content-Type: application/json
@@ -85,7 +78,7 @@ Content-Type: application/json
 #
 
 ### PATCH Modifying user properties
-@modifyUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[1].id}})/users({{userSecurityId}})/users({{userSecurityId}})
+@modifyUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/users({{userSecurityId}})/users({{userSecurityId}})
 PATCH {{modifyUrl}}
 If-Match: *
 Authorization: Bearer {{token}}
@@ -99,7 +92,7 @@ Content-Type: application/json
 #
 
 ### DELETE Delete user permission
-@deleteUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[1].id}})/users({{userSecurityId}})/userPermissions({{userPermissionId}})
+@deleteUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/users({{userSecurityId}})/userPermissions({{userPermissionId}})
 DELETE {{deleteUrl}}
 Authorization: Bearer {{token}}
 Content-Type: application/json

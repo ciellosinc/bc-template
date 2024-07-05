@@ -1,13 +1,14 @@
-@clientid = ClientIdTest
-@clientsecret = secret
+@clientid = 7e930f8e-fac4-43a6-a242-3a4079ac4553
+@clientsecret = clientSecret
 @scope = https://api.businesscentral.dynamics.com/.default
-@tenant = TenantIdTest
+@tenant = ffb102fa-38b1-4d6b-ad59-1192df615c1e
 @environmentName = Sandbox1
 @aPIPublisher = ciellos
 @aPIGroup = salesOrderApi
 @aPIVersion = v1.0
 @baseAPIUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/{{aPIPublisher}}/{{aPIGroup}}/{{aPIVersion}}
 @entitySetName = salesOrders
+@packageId = 
 
 ###########################################################################
 #    ____      _                                   _        _              
@@ -28,23 +29,22 @@ grant_type=client_credentials
 ###
 @token = {{tokenrequest.response.body.access_token}}
 ###
-@baseUrl = https://api.businesscentral.dynamics.com/v2.0/{{environmentName}}
+@baseUrl = https://api.businesscentral.dynamics.com
 ##############################################################################
-### GET $metadata
-# @name $metadata
-GET  {{baseUrl}}/api/v2.0/
-Authorization: Bearer {{token}}
-###
-#
-
 ### GET companies
 # @name companies
-GET  {{baseUrl}}/api/v2.0/companies
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies
+Authorization: Bearer {{token}}
+#
+
+### GET configurationPackages
+# @name configurationPackages
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/configurationPackages
 Authorization: Bearer {{token}}
 #
 
 ### POST Insert RapidStart
-@insertUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[1].id}})/configurationPackages
+@insertUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/configurationPackages
 POST {{insertUrl}}
 Authorization: Bearer {{token}}
 Content-Type: application/json
@@ -57,7 +57,7 @@ Content-Type: application/json
 #
 
 ### PATCH Upload RapidStart package
-@uploadURL = {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[1].id}})/configurationPackages({packageId})/file('{SAMPLE}')/content
+@uploadURL = {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/configurationPackages({{packageId}})/file('{SAMPLE}')/content
 PATCH {{uploadURL}}
 If-Match: *
 Authorization: Bearer {{token}}
@@ -70,14 +70,14 @@ Content-Type: application/json
 #
 
 ### POST Import RapidStart package
-@importUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[1].id}})/configurationPackages({packageId})/Microsoft.NAV.import
+@importUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/configurationPackages({packageId})/Microsoft.NAV.import
 POST {{importUrl}}
 Authorization: Bearer {{token}}
 ###
 #
 
 ### POST Apply RapidStart package
-@applyUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[1].id}})/configurationPackages({packageId})/Microsoft.NAV.apply
+@applyUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/configurationPackages({packageId})/Microsoft.NAV.apply
 POST {{applyUrl}}
 Authorization: Bearer {{token}}
 ###
