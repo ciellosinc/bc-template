@@ -465,6 +465,154 @@
 							"response": []
 						},
 						{
+							"name": "Delete Config Package",
+							"protocolProfileBehavior": {
+								"disabledSystemHeaders": {}
+							},
+							"request": {
+								"auth": {
+									"type": "oauth2",
+									"oauth2": [
+										{
+											"key": "clientSecret",
+											"value": "{{clientSecret}}",
+											"type": "string"
+										},
+										{
+											"key": "clientId",
+											"value": "{{clientId}}",
+											"type": "string"
+										},
+										{
+											"key": "accessTokenUrl",
+											"value": "{{accessTokenUrl}}",
+											"type": "string"
+										},
+										{
+											"key": "authUrl",
+											"value": "{{authUrl}}",
+											"type": "string"
+										},
+										{
+											"key": "tokenName",
+											"value": "Ciellos",
+											"type": "string"
+										},
+										{
+											"key": "accessToken",
+											"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IkwxS2ZLRklfam5YYndXYzIyeFp4dzFzVUhIMCIsImtpZCI6IkwxS2ZLRklfam5YYndXYzIyeFp4dzFzVUhIMCJ9.eyJhdWQiOiJodHRwczovL2FwaS5idXNpbmVzc2NlbnRyYWwuZHluYW1pY3MuY29tIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvZmZiMTAyZmEtMzhiMS00ZDZiLWFkNTktMTE5MmRmNjE1YzFlLyIsImlhdCI6MTcxNzY3MDAzNiwibmJmIjoxNzE3NjcwMDM2LCJleHAiOjE3MTc2NzQ0MDAsImFjciI6IjEiLCJhaW8iOiJBVlFBcS84V0FBQUF3aENUTjlyL1B4aUltdlF2elMxcjliOWhpRldnb2ZBS0JKWVQ2c2VVQWovY0lSQWpYV0FCV3c0aS9WMzRYaDV0c1ZSYThrNkhEZldVUW55Z25jK3R0NGZ0eEV3RUVLRk5XSUEvOUVqKzUyOD0iLCJhbXIiOlsicHdkIiwibWZhIl0sImFwcGlkIjoiN2U5MzBmOGUtZmFjNC00M2E2LWEyNDItM2E0MDc5YWM0NTUzIiwiYXBwaWRhY3IiOiIxIiwiZmFtaWx5X25hbWUiOiJGZXJyZWlyYSIsImdpdmVuX25hbWUiOiJQZWRybyIsImlkdHlwIjoidXNlciIsImlwYWRkciI6Ijg5LjExNC4yMDEuMTg4IiwibmFtZSI6IlBlZHJvIEZlcnJlaXJhIiwib2lkIjoiNWM2YmYzZWUtOWYxZC00YzUyLTlhNDMtOTQzOWIwZjBjMDBlIiwicHVpZCI6IjEwMDMyMDAzMjNCMURCQzUiLCJyaCI6IjAuQWE0QS1nS3hfN0U0YTAydFdSR1MzMkZjSGozdmJabHNzMU5CaGdlbV9Ud0J1Si1yQVBVLiIsInNjcCI6IkZpbmFuY2lhbHMuUmVhZFdyaXRlLkFsbCB1c2VyX2ltcGVyc29uYXRpb24iLCJzdWIiOiJiX2Y1b1B4WmRjS0N0SGhJRE9EVjFES1lDNFNGQ2tfZ0YwS21PSDg2QWtjIiwidGlkIjoiZmZiMTAyZmEtMzhiMS00ZDZiLWFkNTktMTE5MmRmNjE1YzFlIiwidW5pcXVlX25hbWUiOiJQZWRyb0ZlcnJlaXJhQEJvdGVsb1BlZHJvLm9ubWljcm9zb2Z0LmNvbSIsInVwbiI6IlBlZHJvRmVycmVpcmFAQm90ZWxvUGVkcm8ub25taWNyb3NvZnQuY29tIiwidXRpIjoicmx6OXM1ejlTMGFkNXNFM2tiWXVBQSIsInZlciI6IjEuMCIsIndpZHMiOlsiNjJlOTAzOTQtNjlmNS00MjM3LTkxOTAtMDEyMTc3MTQ1ZTEwIiwiYjc5ZmJmNGQtM2VmOS00Njg5LTgxNDMtNzZiMTk0ZTg1NTA5Il19.fRhwf3CcHK4Q0kvdyaX4ZxyoKuxDdOwjo2wi_N8zl4P8AljK18PA0pNgy9fZ5XGV-bwA-sCq3NoLL0huE0xBzJViBXep_qmhMyJwPxK3mD4t--fIGbDUCxnCLF4dK97OErhfivLB1rEIenBLzUq1Mk_bXk5ko2OloTHEkoGrcNJHYf1EOK5FNCjQRVUF_A0cD7nmL0Om8WiAmYyDaR5c_f-NL0xP-Z3pXcsqM0XSiydL3sLaEAg87PRN4UD096yngPe5U9_kgDSo1hu_52ffNWNQKXip8vky3oYj_jr5J0NVugbEyEKdktOiV_goFtwdIuF0f-ot7zBdCYo8JN0mFg",
+											"type": "string"
+										},
+										{
+											"key": "tokenType",
+											"value": "Bearer",
+											"type": "string"
+										},
+										{
+											"key": "refresh_token",
+											"type": "any"
+										},
+										{
+											"key": "expires_in",
+											"value": 4063,
+											"type": "number"
+										},
+										{
+											"key": "token_id",
+											"value": "35bf07d6-ab69-4aae-ac80-af40ad3451a4",
+											"type": "string"
+										},
+										{
+											"key": "timestamp",
+											"value": 1717670336212,
+											"type": "number"
+										},
+										{
+											"key": "refreshRequestParams",
+											"value": [
+												{
+													"key": "$select",
+													"value": "number",
+													"enabled": false,
+													"send_as": "request_body"
+												},
+												{
+													"key": "$filter",
+													"value": "number eq 102199",
+													"enabled": false,
+													"send_as": "request_body"
+												}
+											],
+											"type": "any"
+										},
+										{
+											"key": "scope",
+											"value": "https://api.businesscentral.dynamics.com/Financials.ReadWrite.All",
+											"type": "string"
+										},
+										{
+											"key": "redirect_uri",
+											"value": "https://businesscentral.dynamics.com/OAuthLanding.htm",
+											"type": "string"
+										},
+										{
+											"key": "grant_type",
+											"value": "authorization_code",
+											"type": "string"
+										},
+										{
+											"key": "refreshTokenUrl",
+											"value": "",
+											"type": "string"
+										},
+										{
+											"key": "addTokenTo",
+											"value": "header",
+											"type": "string"
+										},
+										{
+											"key": "id",
+											"value": "request/c54934f0-d10d-4e04-92c1-670abc64f204/123d8d5a-85b6-473f-837c-2e8268f46eb7",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "If-Match",
+										"value": "*"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companyId}})/configurationPackages(1680bc22-a133-ef11-840a-6045bd11edac)",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2.0",
+										"{{environmentName}}",
+										"api",
+										"microsoft",
+										"automation",
+										"v2.0",
+										"companies({{companyId}})",
+										"configurationPackages(1680bc22-a133-ef11-840a-6045bd11edac)"
+									]
+								}
+							},
+							"response": []
+						},
+						{
 							"name": "Insert RapidStart",
 							"protocolProfileBehavior": {
 								"disabledSystemHeaders": {}
@@ -734,7 +882,7 @@
 								],
 								"body": {
 									"mode": "raw",
-									"raw": "//Body: RapidStart file.",
+									"raw": "//Body: RapidStart file as binary.",
 									"options": {
 										"raw": {
 											"language": "json"
@@ -883,12 +1031,9 @@
 									}
 								],
 								"body": {
-									"mode": "raw",
-									"raw": "",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
+									"mode": "file",
+									"file": {
+										"src": ""
 									}
 								},
 								"url": {
@@ -2559,6 +2704,154 @@
 							"response": []
 						}
 					]
+				},
+				{
+					"name": "Get automation APIs",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true,
+						"disabledSystemHeaders": {}
+					},
+					"request": {
+						"auth": {
+							"type": "oauth2",
+							"oauth2": [
+								{
+									"key": "clientSecret",
+									"value": "{{clientSecret}}",
+									"type": "string"
+								},
+								{
+									"key": "clientId",
+									"value": "{{clientId}}",
+									"type": "string"
+								},
+								{
+									"key": "accessTokenUrl",
+									"value": "{{accessTokenUrl}}",
+									"type": "string"
+								},
+								{
+									"key": "authUrl",
+									"value": "{{authUrl}}",
+									"type": "string"
+								},
+								{
+									"key": "tokenName",
+									"value": "Ciellos",
+									"type": "string"
+								},
+								{
+									"key": "accessToken",
+									"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IkwxS2ZLRklfam5YYndXYzIyeFp4dzFzVUhIMCIsImtpZCI6IkwxS2ZLRklfam5YYndXYzIyeFp4dzFzVUhIMCJ9.eyJhdWQiOiJodHRwczovL2FwaS5idXNpbmVzc2NlbnRyYWwuZHluYW1pY3MuY29tIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvZmZiMTAyZmEtMzhiMS00ZDZiLWFkNTktMTE5MmRmNjE1YzFlLyIsImlhdCI6MTcxNzY3MDAzNiwibmJmIjoxNzE3NjcwMDM2LCJleHAiOjE3MTc2NzQ0MDAsImFjciI6IjEiLCJhaW8iOiJBVlFBcS84V0FBQUF3aENUTjlyL1B4aUltdlF2elMxcjliOWhpRldnb2ZBS0JKWVQ2c2VVQWovY0lSQWpYV0FCV3c0aS9WMzRYaDV0c1ZSYThrNkhEZldVUW55Z25jK3R0NGZ0eEV3RUVLRk5XSUEvOUVqKzUyOD0iLCJhbXIiOlsicHdkIiwibWZhIl0sImFwcGlkIjoiN2U5MzBmOGUtZmFjNC00M2E2LWEyNDItM2E0MDc5YWM0NTUzIiwiYXBwaWRhY3IiOiIxIiwiZmFtaWx5X25hbWUiOiJGZXJyZWlyYSIsImdpdmVuX25hbWUiOiJQZWRybyIsImlkdHlwIjoidXNlciIsImlwYWRkciI6Ijg5LjExNC4yMDEuMTg4IiwibmFtZSI6IlBlZHJvIEZlcnJlaXJhIiwib2lkIjoiNWM2YmYzZWUtOWYxZC00YzUyLTlhNDMtOTQzOWIwZjBjMDBlIiwicHVpZCI6IjEwMDMyMDAzMjNCMURCQzUiLCJyaCI6IjAuQWE0QS1nS3hfN0U0YTAydFdSR1MzMkZjSGozdmJabHNzMU5CaGdlbV9Ud0J1Si1yQVBVLiIsInNjcCI6IkZpbmFuY2lhbHMuUmVhZFdyaXRlLkFsbCB1c2VyX2ltcGVyc29uYXRpb24iLCJzdWIiOiJiX2Y1b1B4WmRjS0N0SGhJRE9EVjFES1lDNFNGQ2tfZ0YwS21PSDg2QWtjIiwidGlkIjoiZmZiMTAyZmEtMzhiMS00ZDZiLWFkNTktMTE5MmRmNjE1YzFlIiwidW5pcXVlX25hbWUiOiJQZWRyb0ZlcnJlaXJhQEJvdGVsb1BlZHJvLm9ubWljcm9zb2Z0LmNvbSIsInVwbiI6IlBlZHJvRmVycmVpcmFAQm90ZWxvUGVkcm8ub25taWNyb3NvZnQuY29tIiwidXRpIjoicmx6OXM1ejlTMGFkNXNFM2tiWXVBQSIsInZlciI6IjEuMCIsIndpZHMiOlsiNjJlOTAzOTQtNjlmNS00MjM3LTkxOTAtMDEyMTc3MTQ1ZTEwIiwiYjc5ZmJmNGQtM2VmOS00Njg5LTgxNDMtNzZiMTk0ZTg1NTA5Il19.fRhwf3CcHK4Q0kvdyaX4ZxyoKuxDdOwjo2wi_N8zl4P8AljK18PA0pNgy9fZ5XGV-bwA-sCq3NoLL0huE0xBzJViBXep_qmhMyJwPxK3mD4t--fIGbDUCxnCLF4dK97OErhfivLB1rEIenBLzUq1Mk_bXk5ko2OloTHEkoGrcNJHYf1EOK5FNCjQRVUF_A0cD7nmL0Om8WiAmYyDaR5c_f-NL0xP-Z3pXcsqM0XSiydL3sLaEAg87PRN4UD096yngPe5U9_kgDSo1hu_52ffNWNQKXip8vky3oYj_jr5J0NVugbEyEKdktOiV_goFtwdIuF0f-ot7zBdCYo8JN0mFg",
+									"type": "string"
+								},
+								{
+									"key": "tokenType",
+									"value": "Bearer",
+									"type": "string"
+								},
+								{
+									"key": "refresh_token",
+									"type": "any"
+								},
+								{
+									"key": "expires_in",
+									"value": 4063,
+									"type": "number"
+								},
+								{
+									"key": "token_id",
+									"value": "35bf07d6-ab69-4aae-ac80-af40ad3451a4",
+									"type": "string"
+								},
+								{
+									"key": "timestamp",
+									"value": 1717670336212,
+									"type": "number"
+								},
+								{
+									"key": "refreshRequestParams",
+									"value": [
+										{
+											"key": "$select",
+											"value": "number",
+											"enabled": false,
+											"send_as": "request_body"
+										},
+										{
+											"key": "$filter",
+											"value": "number eq 102199",
+											"enabled": false,
+											"send_as": "request_body"
+										}
+									],
+									"type": "any"
+								},
+								{
+									"key": "scope",
+									"value": "https://api.businesscentral.dynamics.com/Financials.ReadWrite.All",
+									"type": "string"
+								},
+								{
+									"key": "redirect_uri",
+									"value": "https://businesscentral.dynamics.com/OAuthLanding.htm",
+									"type": "string"
+								},
+								{
+									"key": "grant_type",
+									"value": "authorization_code",
+									"type": "string"
+								},
+								{
+									"key": "refreshTokenUrl",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "addTokenTo",
+									"value": "header",
+									"type": "string"
+								},
+								{
+									"key": "id",
+									"value": "request/c54934f0-d10d-4e04-92c1-670abc64f204/123d8d5a-85b6-473f-837c-2e8268f46eb7",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [
+							{
+								"key": "If-Match",
+								"value": "*"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"v2.0",
+								"{{environmentName}}",
+								"api",
+								"microsoft",
+								"automation",
+								"v2.0",
+								""
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		},
@@ -17679,7 +17972,7 @@
 							}
 						},
 						"url": {
-							"raw": "{{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/ODataV4/Company('{{companyId}}')/Job_List?$select=No,Description,Bill_to_Customer_No,Status,Person_Responsible,Search_Description,Project_Manager",
+							"raw": "{{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/ODataV4/Company('{{companyId}}')/Customers",
 							"host": [
 								"{{baseUrl}}"
 							],
@@ -17689,13 +17982,7 @@
 								"{{environmentName}}",
 								"ODataV4",
 								"Company('{{companyId}}')",
-								"Job_List"
-							],
-							"query": [
-								{
-									"key": "$select",
-									"value": "No,Description,Bill_to_Customer_No,Status,Person_Responsible,Search_Description,Project_Manager"
-								}
+								"Customers"
 							]
 						}
 					},
@@ -20582,7 +20869,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/v2.0/$metadata",
+					"raw": "{{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/v2.0/$metadata?$format=json",
 					"host": [
 						"{{baseUrl}}"
 					],
@@ -20593,6 +20880,326 @@
 						"api",
 						"v2.0",
 						"$metadata"
+					],
+					"query": [
+						{
+							"key": "$format",
+							"value": "json"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get companies",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "{{clientSecret}}",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "{{clientId}}",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "{{accessTokenUrl}}",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "{{authUrl}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "Ciellos",
+							"type": "string"
+						},
+						{
+							"key": "accessToken",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IkwxS2ZLRklfam5YYndXYzIyeFp4dzFzVUhIMCIsImtpZCI6IkwxS2ZLRklfam5YYndXYzIyeFp4dzFzVUhIMCJ9.eyJhdWQiOiJodHRwczovL2FwaS5idXNpbmVzc2NlbnRyYWwuZHluYW1pY3MuY29tIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvZmZiMTAyZmEtMzhiMS00ZDZiLWFkNTktMTE5MmRmNjE1YzFlLyIsImlhdCI6MTcxNzY3MDAzNiwibmJmIjoxNzE3NjcwMDM2LCJleHAiOjE3MTc2NzQ0MDAsImFjciI6IjEiLCJhaW8iOiJBVlFBcS84V0FBQUF3aENUTjlyL1B4aUltdlF2elMxcjliOWhpRldnb2ZBS0JKWVQ2c2VVQWovY0lSQWpYV0FCV3c0aS9WMzRYaDV0c1ZSYThrNkhEZldVUW55Z25jK3R0NGZ0eEV3RUVLRk5XSUEvOUVqKzUyOD0iLCJhbXIiOlsicHdkIiwibWZhIl0sImFwcGlkIjoiN2U5MzBmOGUtZmFjNC00M2E2LWEyNDItM2E0MDc5YWM0NTUzIiwiYXBwaWRhY3IiOiIxIiwiZmFtaWx5X25hbWUiOiJGZXJyZWlyYSIsImdpdmVuX25hbWUiOiJQZWRybyIsImlkdHlwIjoidXNlciIsImlwYWRkciI6Ijg5LjExNC4yMDEuMTg4IiwibmFtZSI6IlBlZHJvIEZlcnJlaXJhIiwib2lkIjoiNWM2YmYzZWUtOWYxZC00YzUyLTlhNDMtOTQzOWIwZjBjMDBlIiwicHVpZCI6IjEwMDMyMDAzMjNCMURCQzUiLCJyaCI6IjAuQWE0QS1nS3hfN0U0YTAydFdSR1MzMkZjSGozdmJabHNzMU5CaGdlbV9Ud0J1Si1yQVBVLiIsInNjcCI6IkZpbmFuY2lhbHMuUmVhZFdyaXRlLkFsbCB1c2VyX2ltcGVyc29uYXRpb24iLCJzdWIiOiJiX2Y1b1B4WmRjS0N0SGhJRE9EVjFES1lDNFNGQ2tfZ0YwS21PSDg2QWtjIiwidGlkIjoiZmZiMTAyZmEtMzhiMS00ZDZiLWFkNTktMTE5MmRmNjE1YzFlIiwidW5pcXVlX25hbWUiOiJQZWRyb0ZlcnJlaXJhQEJvdGVsb1BlZHJvLm9ubWljcm9zb2Z0LmNvbSIsInVwbiI6IlBlZHJvRmVycmVpcmFAQm90ZWxvUGVkcm8ub25taWNyb3NvZnQuY29tIiwidXRpIjoicmx6OXM1ejlTMGFkNXNFM2tiWXVBQSIsInZlciI6IjEuMCIsIndpZHMiOlsiNjJlOTAzOTQtNjlmNS00MjM3LTkxOTAtMDEyMTc3MTQ1ZTEwIiwiYjc5ZmJmNGQtM2VmOS00Njg5LTgxNDMtNzZiMTk0ZTg1NTA5Il19.fRhwf3CcHK4Q0kvdyaX4ZxyoKuxDdOwjo2wi_N8zl4P8AljK18PA0pNgy9fZ5XGV-bwA-sCq3NoLL0huE0xBzJViBXep_qmhMyJwPxK3mD4t--fIGbDUCxnCLF4dK97OErhfivLB1rEIenBLzUq1Mk_bXk5ko2OloTHEkoGrcNJHYf1EOK5FNCjQRVUF_A0cD7nmL0Om8WiAmYyDaR5c_f-NL0xP-Z3pXcsqM0XSiydL3sLaEAg87PRN4UD096yngPe5U9_kgDSo1hu_52ffNWNQKXip8vky3oYj_jr5J0NVugbEyEKdktOiV_goFtwdIuF0f-ot7zBdCYo8JN0mFg",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "refresh_token",
+							"type": "any"
+						},
+						{
+							"key": "expires_in",
+							"value": 4063,
+							"type": "number"
+						},
+						{
+							"key": "token_id",
+							"value": "35bf07d6-ab69-4aae-ac80-af40ad3451a4",
+							"type": "string"
+						},
+						{
+							"key": "timestamp",
+							"value": 1717670336212,
+							"type": "number"
+						},
+						{
+							"key": "refreshRequestParams",
+							"value": [
+								{
+									"key": "$select",
+									"value": "number",
+									"enabled": false,
+									"send_as": "request_body"
+								},
+								{
+									"key": "$filter",
+									"value": "number eq 102199",
+									"enabled": false,
+									"send_as": "request_body"
+								}
+							],
+							"type": "any"
+						},
+						{
+							"key": "scope",
+							"value": "https://api.businesscentral.dynamics.com/Financials.ReadWrite.All",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://businesscentral.dynamics.com/OAuthLanding.htm",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "string"
+						},
+						{
+							"key": "refreshTokenUrl",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "id",
+							"value": "request/c54934f0-d10d-4e04-92c1-670abc64f204/123d8d5a-85b6-473f-837c-2e8268f46eb7",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "If-Match",
+						"value": "*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xml",
+						"type": "text"
+					},
+					{
+						"key": "SOAPAction",
+						"value": "#POST",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"v2.0",
+						"{{tenant}}",
+						"{{environmentName}}",
+						"api",
+						"microsoft",
+						"automation",
+						"v2.0",
+						"companies"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Environments",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true,
+				"disabledSystemHeaders": {}
+			},
+			"request": {
+				"auth": {
+					"type": "oauth2",
+					"oauth2": [
+						{
+							"key": "clientSecret",
+							"value": "{{clientSecret}}",
+							"type": "string"
+						},
+						{
+							"key": "clientId",
+							"value": "{{clientId}}",
+							"type": "string"
+						},
+						{
+							"key": "accessTokenUrl",
+							"value": "{{accessTokenUrl}}",
+							"type": "string"
+						},
+						{
+							"key": "authUrl",
+							"value": "{{authUrl}}",
+							"type": "string"
+						},
+						{
+							"key": "tokenName",
+							"value": "Ciellos",
+							"type": "string"
+						},
+						{
+							"key": "accessToken",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiIsIng1dCI6IkwxS2ZLRklfam5YYndXYzIyeFp4dzFzVUhIMCIsImtpZCI6IkwxS2ZLRklfam5YYndXYzIyeFp4dzFzVUhIMCJ9.eyJhdWQiOiJodHRwczovL2FwaS5idXNpbmVzc2NlbnRyYWwuZHluYW1pY3MuY29tIiwiaXNzIjoiaHR0cHM6Ly9zdHMud2luZG93cy5uZXQvZmZiMTAyZmEtMzhiMS00ZDZiLWFkNTktMTE5MmRmNjE1YzFlLyIsImlhdCI6MTcxNzY3MDAzNiwibmJmIjoxNzE3NjcwMDM2LCJleHAiOjE3MTc2NzQ0MDAsImFjciI6IjEiLCJhaW8iOiJBVlFBcS84V0FBQUF3aENUTjlyL1B4aUltdlF2elMxcjliOWhpRldnb2ZBS0JKWVQ2c2VVQWovY0lSQWpYV0FCV3c0aS9WMzRYaDV0c1ZSYThrNkhEZldVUW55Z25jK3R0NGZ0eEV3RUVLRk5XSUEvOUVqKzUyOD0iLCJhbXIiOlsicHdkIiwibWZhIl0sImFwcGlkIjoiN2U5MzBmOGUtZmFjNC00M2E2LWEyNDItM2E0MDc5YWM0NTUzIiwiYXBwaWRhY3IiOiIxIiwiZmFtaWx5X25hbWUiOiJGZXJyZWlyYSIsImdpdmVuX25hbWUiOiJQZWRybyIsImlkdHlwIjoidXNlciIsImlwYWRkciI6Ijg5LjExNC4yMDEuMTg4IiwibmFtZSI6IlBlZHJvIEZlcnJlaXJhIiwib2lkIjoiNWM2YmYzZWUtOWYxZC00YzUyLTlhNDMtOTQzOWIwZjBjMDBlIiwicHVpZCI6IjEwMDMyMDAzMjNCMURCQzUiLCJyaCI6IjAuQWE0QS1nS3hfN0U0YTAydFdSR1MzMkZjSGozdmJabHNzMU5CaGdlbV9Ud0J1Si1yQVBVLiIsInNjcCI6IkZpbmFuY2lhbHMuUmVhZFdyaXRlLkFsbCB1c2VyX2ltcGVyc29uYXRpb24iLCJzdWIiOiJiX2Y1b1B4WmRjS0N0SGhJRE9EVjFES1lDNFNGQ2tfZ0YwS21PSDg2QWtjIiwidGlkIjoiZmZiMTAyZmEtMzhiMS00ZDZiLWFkNTktMTE5MmRmNjE1YzFlIiwidW5pcXVlX25hbWUiOiJQZWRyb0ZlcnJlaXJhQEJvdGVsb1BlZHJvLm9ubWljcm9zb2Z0LmNvbSIsInVwbiI6IlBlZHJvRmVycmVpcmFAQm90ZWxvUGVkcm8ub25taWNyb3NvZnQuY29tIiwidXRpIjoicmx6OXM1ejlTMGFkNXNFM2tiWXVBQSIsInZlciI6IjEuMCIsIndpZHMiOlsiNjJlOTAzOTQtNjlmNS00MjM3LTkxOTAtMDEyMTc3MTQ1ZTEwIiwiYjc5ZmJmNGQtM2VmOS00Njg5LTgxNDMtNzZiMTk0ZTg1NTA5Il19.fRhwf3CcHK4Q0kvdyaX4ZxyoKuxDdOwjo2wi_N8zl4P8AljK18PA0pNgy9fZ5XGV-bwA-sCq3NoLL0huE0xBzJViBXep_qmhMyJwPxK3mD4t--fIGbDUCxnCLF4dK97OErhfivLB1rEIenBLzUq1Mk_bXk5ko2OloTHEkoGrcNJHYf1EOK5FNCjQRVUF_A0cD7nmL0Om8WiAmYyDaR5c_f-NL0xP-Z3pXcsqM0XSiydL3sLaEAg87PRN4UD096yngPe5U9_kgDSo1hu_52ffNWNQKXip8vky3oYj_jr5J0NVugbEyEKdktOiV_goFtwdIuF0f-ot7zBdCYo8JN0mFg",
+							"type": "string"
+						},
+						{
+							"key": "tokenType",
+							"value": "Bearer",
+							"type": "string"
+						},
+						{
+							"key": "refresh_token",
+							"type": "any"
+						},
+						{
+							"key": "expires_in",
+							"value": 4063,
+							"type": "number"
+						},
+						{
+							"key": "token_id",
+							"value": "35bf07d6-ab69-4aae-ac80-af40ad3451a4",
+							"type": "string"
+						},
+						{
+							"key": "timestamp",
+							"value": 1717670336212,
+							"type": "number"
+						},
+						{
+							"key": "refreshRequestParams",
+							"value": [
+								{
+									"key": "$select",
+									"value": "number",
+									"enabled": false,
+									"send_as": "request_body"
+								},
+								{
+									"key": "$filter",
+									"value": "number eq 102199",
+									"enabled": false,
+									"send_as": "request_body"
+								}
+							],
+							"type": "any"
+						},
+						{
+							"key": "scope",
+							"value": "https://api.businesscentral.dynamics.com/Financials.ReadWrite.All",
+							"type": "string"
+						},
+						{
+							"key": "redirect_uri",
+							"value": "https://businesscentral.dynamics.com/OAuthLanding.htm",
+							"type": "string"
+						},
+						{
+							"key": "grant_type",
+							"value": "authorization_code",
+							"type": "string"
+						},
+						{
+							"key": "refreshTokenUrl",
+							"value": "",
+							"type": "string"
+						},
+						{
+							"key": "addTokenTo",
+							"value": "header",
+							"type": "string"
+						},
+						{
+							"key": "id",
+							"value": "request/c54934f0-d10d-4e04-92c1-670abc64f204/123d8d5a-85b6-473f-837c-2e8268f46eb7",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "If-Match",
+						"value": "*"
+					},
+					{
+						"key": "Content-Type",
+						"value": "text/xml",
+						"type": "text"
+					},
+					{
+						"key": "SOAPAction",
+						"value": "#POST",
+						"type": "text",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseUrl}}/environments/v1.0",
+					"host": [
+						"{{baseUrl}}"
+					],
+					"path": [
+						"environments",
+						"v1.0"
 					]
 				}
 			},

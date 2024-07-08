@@ -30,10 +30,17 @@ grant_type=client_credentials
 ###
 @baseUrl = https://api.businesscentral.dynamics.com
 ##############################################################################
+### GET all APIs
+# @name allApi
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/
+Authorization: Bearer {{token}}
+#
+
 ### GET $metadata
 # @name $metadata
-GET {{baseUrl}}/api/v2.0/
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/$metadata
 Authorization: Bearer {{token}}
+#
 
 ### GET companies
 # @name companies
@@ -61,6 +68,7 @@ Authorization: Bearer {{token}}
 #
 
 ### GET items using orderby
+# also possible to use desc
 # @name itemsSort
 GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/{{entitySetName}}?$orderby=displayName asc
 Authorization: Bearer {{token}}

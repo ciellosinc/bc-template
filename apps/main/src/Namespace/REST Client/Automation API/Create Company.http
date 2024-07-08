@@ -36,6 +36,12 @@ GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies
 Authorization: Bearer {{token}}
 #
 
+### GET automation Apis
+# @name automationApi
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/
+Authorization: Bearer {{token}}
+#
+
 ### GET automationCompanies
 # @name automationCompanies
 GET  {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/automationCompanies
