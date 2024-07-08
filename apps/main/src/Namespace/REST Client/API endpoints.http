@@ -87,6 +87,12 @@ GET <Copy odata.nextLink>
 Authorization: Bearer {{token}}
 #
 
+### GET recordset count - count how many items
+# @name countItems
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/{{entitySetName}}?$count=true
+Authorization: Bearer {{token}}
+#
+
 ### GET salesOrders
 # @name salesOrders
 GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/salesOrders
