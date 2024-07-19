@@ -6247,7 +6247,7 @@
 					"response": []
 				},
 				{
-					"name": "XXX Get Scheduled Jobs",
+					"name": "Get Scheduled Jobs",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true,
 						"disabledSystemHeaders": {}
@@ -9500,7 +9500,7 @@
 					"response": []
 				},
 				{
-					"name": "XXX Get Attachments",
+					"name": "Get Attachments",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true,
 						"disabledSystemHeaders": {}
@@ -11862,7 +11862,7 @@
 					"response": []
 				},
 				{
-					"name": "XXX Get Apply Vendor Entries",
+					"name": "Get Apply Vendor Entries",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true,
 						"disabledSystemHeaders": {}
@@ -12207,7 +12207,7 @@
 					"response": []
 				},
 				{
-					"name": "XXX Get Purchase Credit Memo Lines",
+					"name": "Get Purchase Credit Memo Lines",
 					"protocolProfileBehavior": {
 						"disableBodyPruning": true,
 						"disabledSystemHeaders": {}
