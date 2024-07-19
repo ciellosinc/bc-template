@@ -1,0 +1,263 @@
+@clientid = 7e930f8e-fac4-43a6-a242-3a4079ac4553
+@clientsecret = clientSecret
+@scope = https://api.businesscentral.dynamics.com/.default
+@tenant = ffb102fa-38b1-4d6b-ad59-1192df615c1e
+@environmentName = Sandbox1
+@companyName = CRONUS UK Ltd.
+@baseSoapUrl = {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}
+
+###########################################################################
+#    ____      _                                   _        _              
+#   / ___| ___| |_    __ _  ___ ___ ___  ___ ___  | |_ ___ | | _____ _ __  
+#  | |  _ / _ \ __|  / _` |/ __/ __/ _ \/ __/ __| | __/ _ \| |/ / _ \ '_ \ 
+#  | |_| |  __/ |_  | (_| | (_| (_|  __/\__ \__ \ | || (_) |   <  __/ | | |
+#   \____|\___|\__|  \__,_|\___\___\___||___/___/  \__\___/|_|\_\___|_| |_|
+#
+###########################################################################
+# @name tokenrequest
+POST https://login.microsoftonline.com/{{tenant}}/oauth2/v2.0/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id={{clientid}}
+&client_secret={{clientsecret}}
+&scope={{scope}}
+###
+@token = {{tokenrequest.response.body.access_token}}
+###
+@baseUrl = https://api.businesscentral.dynamics.com
+##############################################################################
+### GET companies
+# @name companies
+GET {{baseUrl}}/v2.0/{{environmentName}}/WS/services/company
+Authorization: Bearer {{token}}
+
+### GET all SOAP
+# @name allSoap
+GET {{baseUrl}}/v2.0/{{environmentName}}/WS/services
+Authorization: Bearer {{token}}
+
+### GET companySetupService
+# @name CompanySetupService
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/Codeunit/CompanySetupService
+Authorization: Bearer {{token}}
+
+### GET ExchangeServiceSetup
+# @name ExchangeServiceSetup
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Codeunit/ExchangeServiceSetup
+Authorization: Bearer {{token}}
+
+### GET PageActionProvider
+# @name PageActionProvider
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Codeunit/PageActionProvider
+Authorization: Bearer {{token}}
+
+### GET SummaryProvider
+# @name SummaryProvider
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Codeunit/SummaryProvider
+Authorization: Bearer {{token}}
+
+### GET WorkflowActionResponse
+# @name WorkflowActionResponse
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Codeunit/WorkflowActionResponse
+Authorization: Bearer {{token}}
+
+### GET AccountantPortalActivityCues
+# @name AccountantPortalActivityCues
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/AccountantPortalActivityCues
+Authorization: Bearer {{token}}
+
+### GET AccountantPortalFinanceCues
+# @name AccountantPortalFinanceCues
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/AccountantPortalFinanceCues
+Authorization: Bearer {{token}}
+
+### GET AccountantPortalUserTasks
+# @name AccountantPortalUserTasks
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/AccountantPortalUserTasks
+Authorization: Bearer {{token}}
+
+### GET Chart_of_Accounts
+# @name Chart_of_Accounts
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/Chart_of_Accounts
+Authorization: Bearer {{token}}
+
+### GET ExcelTemplateAgedAccountsPayable
+# @name ExcelTemplateAgedAccountsPayable
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/ExcelTemplateAgedAccountsPayable
+Authorization: Bearer {{token}}
+
+### GET ExcelTemplateAgedAccountsReceivable
+# @name ExcelTemplateAgedAccountsReceivable
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/ExcelTemplateAgedAccountsReceivable
+Authorization: Bearer {{token}}
+
+### GET ExcelTemplateBalanceSheet
+# @name ExcelTemplateBalanceSheet
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/ExcelTemplateBalanceSheet
+Authorization: Bearer {{token}}
+
+### GET ExcelTemplateCashFlowStatement
+# @name ExcelTemplateCashFlowStatement
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/ExcelTemplateCashFlowStatement
+Authorization: Bearer {{token}}
+
+### GET ExcelTemplateIncomeStatement
+# @name ExcelTemplateIncomeStatement
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/ExcelTemplateIncomeStatement
+Authorization: Bearer {{token}}
+
+### GET ExcelTemplateRetainedEarnings
+# @name ExcelTemplateRetainedEarnings
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/ExcelTemplateRetainedEarnings
+Authorization: Bearer {{token}}
+
+### GET ExcelTemplateTrialBalance
+# @name ExcelTemplateTrialBalance
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/ExcelTemplateTrialBalance
+Authorization: Bearer {{token}}
+
+### GET ExcelTemplateViewCompanyInformation
+# @name ExcelTemplateViewCompanyInformation
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/ExcelTemplateViewCompanyInformation
+Authorization: Bearer {{token}}
+
+### GET Projects
+# @name Job_List
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/Job_List?$select=No,Description,Bill_to_Customer_No,Status,Person_Responsible,Search_Description,Project_Manager
+Authorization: Bearer {{token}}
+
+### GET ProjectPlanningLines
+# @name Job_Planning_Lines
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/Job_Planning_Lines
+Authorization: Bearer {{token}}
+
+### GET ProjectTaskLines
+# @name Job_Task_Lines
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/Job_Task_Lines
+Authorization: Bearer {{token}}
+
+### GET Power_BI_Aged_Acc_Payable
+# @name Power_BI_Aged_Acc_Payable
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/Power_BI_Aged_Acc_Payable
+Authorization: Bearer {{token}}
+
+### GET Power_BI_Aged_Acc_Receivable
+# @name Power_BI_Aged_Acc_Receivable
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/Power_BI_Aged_Acc_Receivable
+Authorization: Bearer {{token}}
+
+### GET Power_BI_Aged_Inventory_Chart
+# @name Power_BI_Aged_Inventory_Chart
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/Power_BI_Aged_Inventory_Chart
+Authorization: Bearer {{token}}
+
+### GET Power_BI_Job_Act_v_Budg_Cost
+# @name Power_BI_Job_Act_v_Budg_Cost
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/Power_BI_Job_Act_v_Budg_Cost
+Authorization: Bearer {{token}}
+
+### GET Power_BI_Job_Act_v_Budg_Price
+# @name Power_BI_Job_Act_v_Budg_Price
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/Power_BI_Job_Act_v_Budg_Price
+Authorization: Bearer {{token}}
+
+### GET Power_BI_Job_Profitability
+# @name Power_BI_Job_Profitability
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/Power_BI_Job_Profitability
+Authorization: Bearer {{token}}
+
+### GET Power_BI_Sales_Pipeline
+# @name Power_BI_Sales_Pipeline
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/Power_BI_Sales_Pipeline
+Authorization: Bearer {{token}}
+
+### GET Power_BI_Top_5_Opportunities
+# @name Power_BI_Top_5_Opportunities
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/Power_BI_Top_5_Opportunities
+Authorization: Bearer {{token}}
+
+### GET Power_BI_WorkDate_Calc
+# @name Power_BI_WorkDate_Calc
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/Power_BI_WorkDate_Calc
+Authorization: Bearer {{token}}
+
+### GET powerbifinance
+# @name powerbifinance
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/powerbifinance
+Authorization: Bearer {{token}}
+
+### GET purchaseDocumentLines
+# @name purchaseDocumentLines
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/purchaseDocumentLines
+Authorization: Bearer {{token}}
+
+### GET purchaseDocuments
+# @name purchaseDocuments
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/purchaseDocuments
+Authorization: Bearer {{token}}
+
+### GET salesDocumentLines
+# @name salesDocumentLines
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/salesDocumentLines
+Authorization: Bearer {{token}}
+
+### GET salesDocuments
+# @name salesDocuments
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/salesDocuments
+Authorization: Bearer {{token}}
+
+### GET UserTask
+# @name UserTaskSetComplete
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/UserTaskSetComplete
+Authorization: Bearer {{token}}
+
+### GET workflowCustomers
+# @name workflowCustomers
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/workflowCustomers
+Authorization: Bearer {{token}}
+
+### GET workflowGenJournalBatches
+# @name workflowGenJournalBatches
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/workflowGenJournalBatches
+Authorization: Bearer {{token}}
+
+### GET workflowGenJournalLines
+# @name workflowGenJournalLines
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/workflowGenJournalLines
+Authorization: Bearer {{token}}
+
+### GET workflowItems
+# @name workflowItems
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/workflowItems
+Authorization: Bearer {{token}}
+
+### GET workflowPurchaseDocumentLines
+# @name workflowPurchaseDocumentLines
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/workflowPurchaseDocumentLines
+Authorization: Bearer {{token}}
+
+### GET workflowPurchaseDocuments
+# @name workflowPurchaseDocuments
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/workflowPurchaseDocuments
+Authorization: Bearer {{token}}
+
+### GET workflowSalesDocumentLines
+# @name workflowSalesDocumentLines
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/workflowSalesDocumentLines
+Authorization: Bearer {{token}}
+
+### GET workflowSalesDocuments
+# @name workflowSalesDocuments
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/workflowSalesDocuments
+Authorization: Bearer {{token}}
+
+### GET workflowVendors
+# @name workflowVendors
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/workflowVendors
+Authorization: Bearer {{token}}
+
+### GET workflowVendworkflowWebhookSubscriptionsors
+# @name workflowWebhookSubscriptions
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/WS/{{companyName}}/Page/workflowWebhookSubscriptions
+Authorization: Bearer {{token}}
