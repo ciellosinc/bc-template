@@ -5,9 +5,7 @@
 @environmentName = Sandbox1
 @companyId = 3ac0aadc-5ae6-ee11-a201-6045bde98aeb
 #@companyName = CRONUS%20UK%20Ltd.
-
 @baseODataUrl = {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/ODataV4/Company('{{companyId}}')
-
 
 ###########################################################################
 #    ____      _                                   _        _              
