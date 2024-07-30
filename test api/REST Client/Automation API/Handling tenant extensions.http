@@ -3,11 +3,6 @@
 @scope = https://api.businesscentral.dynamics.com/.default
 @tenant = ffb102fa-38b1-4d6b-ad59-1192df615c1e
 @environmentName = Sandbox1
-@aPIPublisher = ciellos
-@aPIGroup = salesOrderApi
-@aPIVersion = v1.0
-@baseAPIUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/{{aPIPublisher}}/{{aPIGroup}}/{{aPIVersion}}
-@entitySetName = salesOrders
 @extensionUploadId = 
 
 ###########################################################################
@@ -35,17 +30,19 @@ grant_type=client_credentials
 # @name companies
 GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies
 Authorization: Bearer {{token}}
+###
+@companyId = {{companies.response.body.value[0].id}}
 #
 
 ### GET Monitoring extension installation progress
 # @name installationProgress
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/extensionDeploymentStatus
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companyId}})/extensionDeploymentStatus
 Authorization: Bearer {{token}}
 ###
 #
 
 ### POST Insert extension upload
-POST {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/extensionUpload
+POST {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companyId}})/extensionUpload
 Authorization: Bearer {{token}}
 Content-type: application/json
 
@@ -57,7 +54,7 @@ Content-type: application/json
 #
 
 ### PATCH Upload extension file
-PATCH {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/extensionUpload({{extensionUploadId}})/extensionContent
+PATCH {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companyId}})/extensionUpload({{extensionUploadId}})/extensionContent
 If-Match: *
 Authorization: Bearer {{token}}
 Content-type: application/json
@@ -69,7 +66,7 @@ Content-type: application/json
 #
 
 ### POST Install extension
-POST {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/extensionUpload({{extensionUploadId}})/Microsoft.NAV.upload
+POST {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companyId}})/extensionUpload({{extensionUploadId}})/Microsoft.NAV.upload
 Authorization: Bearer {{token}}
 Content-type: application/json
 

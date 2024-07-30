@@ -3,11 +3,6 @@
 @scope = https://api.businesscentral.dynamics.com/.default
 @tenant = ffb102fa-38b1-4d6b-ad59-1192df615c1e
 @environmentName = Sandbox1
-@aPIPublisher = ciellos
-@aPIGroup = salesOrderApi
-@aPIVersion = v1.0
-@baseAPIUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/{{aPIPublisher}}/{{aPIGroup}}/{{aPIVersion}}
-@entitySetName = salesOrders
 @applicationFamily = BusinessCentral
 @appId = 
 @operationId = 

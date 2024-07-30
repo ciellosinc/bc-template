@@ -3,11 +3,6 @@
 @scope = https://api.businesscentral.dynamics.com/.default
 @tenant = ffb102fa-38b1-4d6b-ad59-1192df615c1e
 @environmentName = Sandbox1
-@aPIPublisher = ciellos
-@aPIGroup = salesOrderApi
-@aPIVersion = v1.0
-@baseAPIUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/{{aPIPublisher}}/{{aPIGroup}}/{{aPIVersion}}
-@entitySetName = salesOrders
 
 ###########################################################################
 #    ____      _                                   _        _              
@@ -34,6 +29,8 @@ grant_type=client_credentials
 # @name companies
 GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies
 Authorization: Bearer {{token}}
+###
+@companyId = {{companies.response.body.value[0].id}}
 #
 
 ### GET automation Apis
@@ -44,12 +41,12 @@ Authorization: Bearer {{token}}
 
 ### GET automationCompanies
 # @name automationCompanies
-GET  {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/automationCompanies
+GET  {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companyId}})/automationCompanies
 Authorization: Bearer {{token}}
 #
 
 ### POST Automation API - Create company
-@CreateCompanyUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/automationCompanies
+@CreateCompanyUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companyId}})/automationCompanies
 POST {{CreateCompanyUrl}}
 Authorization: Bearer {{token}}
 Content-type: application/json

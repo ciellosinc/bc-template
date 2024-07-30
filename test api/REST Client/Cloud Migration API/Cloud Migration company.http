@@ -3,11 +3,6 @@
 @scope = https://api.businesscentral.dynamics.com/.default
 @tenant = ffb102fa-38b1-4d6b-ad59-1192df615c1e
 @environmentName = Sandbox1
-@aPIPublisher = ciellos
-@aPIGroup = salesOrderApi
-@aPIVersion = v1.0
-@baseAPIUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/{{aPIPublisher}}/{{aPIGroup}}/{{aPIVersion}}
-@entitySetName = salesOrders
 @businesscentralPrefix = api.businesscentral.dynamics.com
 @companyId =
 
@@ -38,16 +33,18 @@ grant_type=client_credentials
 # @name companies
 GET  {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies
 Authorization: Bearer {{token}}
+###
+@companyId = {{companies.response.body.value[0].id}}
 #
 
 ### GET cloud Migration company
 # @name cloudMigrationCompany
-GET {{baseUrl}}/api/v1.0/companies({{companies.response.body.value[0].id}})/cloudMigrationCompanies({{cloudMigrationCompanyId}})
+GET {{baseUrl}}/api/v1.0/companies({{companyId}})/cloudMigrationCompanies({{cloudMigrationCompanyId}})
 Authorization: Bearer {{token}}
 #
 
 ### PATCH Update cloud migration
-@updateUrl = https://{{businesscentralPrefix}}/companies({{companies.response.body.value[0].id}})/cloudMigrationCompanies({{companyId}})
+@updateUrl = https://{{businesscentralPrefix}}/companies({{companyId}})/cloudMigrationCompanies({{companyId}})
 PATCH {{updateUrl}}
 If-Match: *
 Authorization: Bearer {{token}}

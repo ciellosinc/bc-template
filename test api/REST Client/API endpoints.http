@@ -3,11 +3,8 @@
 @scope = https://api.businesscentral.dynamics.com/.default
 @tenant = ffb102fa-38b1-4d6b-ad59-1192df615c1e
 @environmentName = Sandbox1
-@aPIPublisher = ciellos
-@aPIGroup = salesOrderApi
-@aPIVersion = v1.0
-@baseAPIUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/{{aPIPublisher}}/{{aPIGroup}}/{{aPIVersion}}
 @entitySetName = items
+@pageSize = 2
 
 ###########################################################################
 #    ____      _                                   _        _              
@@ -46,39 +43,41 @@ Authorization: Bearer {{token}}
 # @name companies
 GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies
 Authorization: Bearer {{token}}
+###
+@companyId = {{companies.response.body.value[0].id}}
 #
 
 ### GET items
 ### Instead of using "{{companies.response.body.value[0].id}}", it's possible to use companyId like "3ac0aadc-5ae6-ee11-a201-6045bde98aeb"
 # @name items
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/{{entitySetName}}
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companyId}})/{{entitySetName}}
 Authorization: Bearer {{token}}
 #
 
 ### GET items with select, top and skip
 # @name itemsSelect
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/{{entitySetName}}?$select=number,displayName,unitCost&$top=5&$skip=10
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companyId}})/{{entitySetName}}?$select=number,displayName,unitCost&$top=5&$skip=10
 Authorization: Bearer {{token}}
 #
 
 ### GET items using filters
 # @name itemsFilter
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/{{entitySetName}}?$filter=type eq 'Inventory' and unitPrice lt 125.1
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companyId}})/{{entitySetName}}?$filter=type eq 'Inventory' and unitPrice lt 125.1
 Authorization: Bearer {{token}}
 #
 
 ### GET items using orderby
 # also possible to use desc
 # @name itemsSort
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/{{entitySetName}}?$orderby=displayName asc
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companyId}})/{{entitySetName}}?$orderby=displayName asc
 Authorization: Bearer {{token}}
 #
 
 ### GET items using pagination
 # @name itemsPagination
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/{{entitySetName}}
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companyId}})/{{entitySetName}}
 Authorization: Bearer {{token}}
-Prefer: odata.maxpagesize=2
+Prefer: odata.maxpagesize={{pageSize}}
 #
 
 ### GET items odata.nextLink
@@ -89,24 +88,24 @@ Authorization: Bearer {{token}}
 
 ### GET recordset count - count how many items
 # @name countItems
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/{{entitySetName}}?$count=true
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companyId}})/{{entitySetName}}?$count=true
 Authorization: Bearer {{token}}
 #
 
 ### GET salesOrders
 # @name salesOrders
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/salesOrders
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companyId}})/salesOrders
 Authorization: Bearer {{token}}
 #
 
 ### GET sales order expanding sales order lines
 # @name salesOrderLines
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/salesOrders?$filter=number eq '101006'&$expand=salesOrderLines
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companyId}})/salesOrders?$filter=number eq '101006'&$expand=salesOrderLines
 Authorization: Bearer {{token}}
 #
 
 ### POST Item
-@itemsUrl = {{baseUrl}}/api/v2.0/companies({{companies.response.body.value[0].id}})/{{entitySetName}}
+@itemsUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companyId}})/{{entitySetName}}
 POST {{itemsUrl}}
 Authorization: Bearer {{token}}
 Content-Type: application/json
@@ -119,7 +118,7 @@ Content-Type: application/json
 
 ### PATCH Item
 ### It's possible to use Item id instead of {{items.response.body.value[1].id}}
-@patchItemsUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/{{entitySetName}}({{items.response.body.value[1].id}})
+@patchItemsUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companyId}})/{{entitySetName}}({{items.response.body.value[1].id}})
 PATCH {{patchItemsUrl}}
 If-Match: *
 Authorization: Bearer {{token}}
@@ -132,7 +131,7 @@ Content-Type: application/json
 #
 
 ### DELETE Item
-@deleteItemsUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/{{entitySetName}}({{items.response.body.value[1].id}})
+@deleteItemsUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companyId}})/{{entitySetName}}({{items.response.body.value[1].id}})
 DELETE {{deleteItemsUrl}}
 Authorization: Bearer {{token}}
 ###

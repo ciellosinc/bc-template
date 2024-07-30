@@ -3,14 +3,8 @@
 @scope = https://api.businesscentral.dynamics.com/.default
 @tenant = ffb102fa-38b1-4d6b-ad59-1192df615c1e
 @environmentName = Sandbox1
-@aPIPublisher = ciellos
-@aPIGroup = salesOrderApi
-@aPIVersion = v1.0
-@baseAPIUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/{{aPIPublisher}}/{{aPIGroup}}/{{aPIVersion}}
-@entitySetName = salesOrders
 @businesscentralPrefix =
 @tableMappingId = 
-@companyId = 
 ###########################################################################
 #    ____      _                                   _        _              
 #   / ___| ___| |_    __ _  ___ ___ ___  ___ ___  | |_ ___ | | _____ _ __  
@@ -36,23 +30,25 @@ grant_type=client_credentials
 # @name companies
 GET  {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies
 Authorization: Bearer {{token}}
+###
+@companyId = {{companies.response.body.value[0].id}}
 #
 
 ### GET table mapping
 # @name tableMapping
-GET {{baseUrl}}/api/v1.0/companies({{companies.response.body.value[0].id}})/tableMappings({{tableMappingId}})
+GET {{baseUrl}}/api/v1.0/companies({{companyId}})/tableMappings({{tableMappingId}})
 Authorization: Bearer {{token}}
 #
 
 ### DELETE table mapping
-@deleteUrl = {{baseUrl}}/api/v1.0/companies({{companies.response.body.value[0].id}})/tableMappings({{tableMappingId}})
+@deleteUrl = {{baseUrl}}/api/v1.0/companies({{companyId}})/tableMappings({{tableMappingId}})
 DELETE {{deleteUrl}}
 Authorization: Bearer {{token}}
 ###
 #
 
 ### PATCH Update Table mapping
-@updateUrl = {{baseUrl}}/api/v1.0/companies({{companies.response.body.value[0].id}})/tableMappings({{tableMappingId}})
+@updateUrl = {{baseUrl}}/api/v1.0/companies({{companyId}})/tableMappings({{tableMappingId}})
 PATCH {{updateUrl}}
 If-Match: *
 Authorization: Bearer {{token}}

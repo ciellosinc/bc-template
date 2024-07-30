@@ -3,11 +3,6 @@
 @scope = https://api.businesscentral.dynamics.com/.default
 @tenant = ffb102fa-38b1-4d6b-ad59-1192df615c1e
 @environmentName = Sandbox1
-@aPIPublisher = ciellos
-@aPIGroup = salesOrderApi
-@aPIVersion = v1.0
-@baseAPIUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/{{aPIPublisher}}/{{aPIGroup}}/{{aPIVersion}}
-@entitySetName = salesOrders
 @businesscentralPrefix =
 @subscriptionId = 
 
@@ -36,23 +31,25 @@ grant_type=client_credentials
 # @name companies
 GET  {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies
 Authorization: Bearer {{token}}
+###
+@companyId = {{companies.response.body.value[0].id}}
 #
 
 ### GET subscriptions
 # @name subscriptions
-GET {{baseUrl}}/api/v1.0/companies({{companies.response.body.value[0].id}})/subscriptions({{subscriptionId}})
+GET {{baseUrl}}/api/v1.0/companies({{companyId}})/subscriptions({{subscriptionId}})
 Authorization: Bearer {{token}}
 #
 
 ### DELETE Delete subscriptions
-@deleteUrl = {{baseUrl}}/api/v1.0/companies({{companies.response.body.value[0].id}})/subscriptions({{subscriptionId}})
+@deleteUrl = {{baseUrl}}/api/v1.0/companies({{companyId}})/subscriptions({{subscriptionId}})
 DELETE {{deleteUrl}}
 Authorization: Bearer {{token}}
 ###
 #
 
 ### PATCH Update subscriptions
-@updateUrl = {{baseUrl}}/api/v1.0/companies({{companies.response.body.value[0].id}})/subscriptions({{subscriptionId}})
+@updateUrl = {{baseUrl}}/api/v1.0/companies({{companyId}})/subscriptions({{subscriptionId}})
 PATCH {{updateUrl}}
 If-Match: *
 Authorization: Bearer {{token}}
@@ -66,7 +63,7 @@ Content-Type: application/json
 #
 
 ### POST Create subscriptions
-@createUrl = {{baseUrl}}/api/v1.0/companies({{companies.response.body.value[0].id}})/subscriptions({{subscriptionId}})
+@createUrl = {{baseUrl}}/api/v1.0/companies({{companyId}})/subscriptions({{subscriptionId}})
 POST {{createUrl}}
 Authorization: Bearer {{token}}
 Content-Type: application/json
