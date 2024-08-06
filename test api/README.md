@@ -1,5 +1,5 @@
-﻿# Testing Templates in Postman and REST for API endpoints
-In this project you can find Testing Templates in Postman and REST for API endpoints (Automation API, Admin Center API, Cloud migration API and API V2), OData endpoints and SOAP endpoints.
+﻿# Testing Templates in Postman and REST Client
+In this project you can find Testing Templates in Postman and REST Client for API, OData and SOAP endpoints.
 
 ## Setting up variables and fields
 
@@ -28,6 +28,11 @@ The following will describe the steps to obtain the data required for this type 
    - State = Enabled.  
    - Sign a permission.
 
+## REST Client ins VSCode
+
+To work with REST Client in VSCode it is necessary to install the Extension: REST Client.
+
+REST Client allows you to send HTTP request and view the response in Visual Studio Code directly.
 
 ## REST Client API
 
@@ -88,12 +93,11 @@ After creating the token you can run each necessary request.
 
 ## Postman
 
-To use Postman template you should import the json files to your workspace in Postman.
-
-You can set the variables in the environment and/or collection files. 
-
-After setting up variables, you need to set authorization to create a token with the neccessary fields.
-
+To use Postman template you should import the json files to your workspace in Postman. To do it you have to click in the "Import" button next to your workspace name and then drop or select the json file, in this case: "Cronus App.postman_collection"
+ 
+To set the authorization in the next step, and after perform the requests, you have to firstly set the variables. To set them click in the collection name, in this case "Cronus App", and click on the "Variables" tab. After each needed change that you make you should save the modifications.
+ 
+After setting up variables, you need to set authorization to create a token with the neccessary fields. To do that you should click on the collection name, select the "Authorization" tab and follow the next steps (some of this fields as said are set on the variables tab in the collection):
 1. Choose Authorization = Oauth 2.0.  
    - Token Name = “choose” 
    - Grant type = authorization code 
@@ -106,8 +110,7 @@ After setting up variables, you need to set authorization to create a token with
 2. Get New Access Token 
 3. Use Token
 
-After creating the token you can use it and run each necessary request.
-
+Since the each request is inheriting authorization from parent, after creating the token you can use it and run each necessary request.
 
 # Additional resources:
 
