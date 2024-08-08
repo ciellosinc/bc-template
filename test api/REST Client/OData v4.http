@@ -1,11 +1,10 @@
-@clientid = 7e930f8e-fac4-43a6-a242-3a4079ac4553
-@clientsecret = clientSecret
+//TODO Insert the corresponding values ​​of the variables
+@clientid = ##Here you can input ClientID value.
+@clientsecret = ##Here you can input Client Secret value.
 @scope = https://api.businesscentral.dynamics.com/.default
-@tenant = ffb102fa-38b1-4d6b-ad59-1192df615c1e
-@environmentName = Sandbox1
-@companyId = 3ac0aadc-5ae6-ee11-a201-6045bde98aeb
-#@companyName = CRONUS%20UK%20Ltd.
-@baseODataUrl = {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/ODataV4/Company('{{companyId}}')
+@tenant = ##Here you can input tenant value.
+@environmentName = ##Here you can input environtmentName value.
+@baseODataUrl = {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/ODataV4/Company('companyId')
 
 ###########################################################################
 #    ____      _                                   _        _              
@@ -43,6 +42,10 @@ Authorization: Bearer {{token}}
 # @name companies
 GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/ODataV4/company
 Authorization: Bearer {{token}}
+
+//This value inside [] to get correct company. By default company at position 0 is retrieved.
+//Instead of using "{{@companyId}}", it's possible to use companyId like "3ac0aadc-5ae6-ee11-a201-6045bde98aeb"
+@companyId = {{companies.response.body.value[0].id}}
 
 ### GET
 GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/ODataV4/Company('{{companyId}}')/{{PageName}}

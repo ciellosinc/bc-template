@@ -1,13 +1,14 @@
-@clientid = 7e930f8e-fac4-43a6-a242-3a4079ac4553
-@clientsecret = clientScecret
+//TODO Insert the corresponding values ​​of the variables
+@clientid = ##Here you can input ClientID value.
+@clientsecret = ##Here you can input Client Secret value.
 @scope = https://api.businesscentral.dynamics.com/.default
-@tenant = ffb102fa-38b1-4d6b-ad59-1192df615c1e
-@environmentName = Sandbox1
-@aPIPublisher = ciellos
-@aPIGroup = salesOrderApi
-@aPIVersion = v1.0
+@tenant = ##Here you can input tenant value.
+@environmentName = ##Here you can input environtmentName value.
+@aPIPublisher = ##Here you can input APIPublisher value.
+@aPIGroup = ##Here you can input APIGroup value.
+@aPIVersion = ##Here you can input APIVersion value.
+@EntitySetName = ##Here you can input EntitySetName value.
 @baseAPIUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/{{aPIPublisher}}/{{aPIGroup}}/{{aPIVersion}}
-@EntitySetName = 
 
 ###########################################################################
 #    ____      _                                   _        _              
@@ -50,530 +51,533 @@ Authorization: Bearer {{token}}
 GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies
 Authorization: Bearer {{token}}
 
+//This value inside [] to get correct company. By default company at position 0 is retrieved.
+//Instead of using "{{@companyId}}", it's possible to use companyId like "3ac0aadc-5ae6-ee11-a201-6045bde98aeb"
+@companyId = {{companies.response.body.value[0].id}}
+
 ### POST 
-POST {{baseUrl}}/v2.0/{{tenant}}/api/{{aPIPublisher}}/{{aPIGroup}}/v2.0/companies({{companies.response.body.value[0].id}})/{{EntitySetName}}
+POST {{baseUrl}}/v2.0/{{tenant}}/api/{{aPIPublisher}}/{{aPIGroup}}/v2.0/companies({{@companyId}})/{{EntitySetName}}
 Authorization: Bearer {{token}}
 
 ### PATCH
-PATCH {{baseUrl}}/v2.0/{{tenant}}/api/{{aPIPublisher}}/{{aPIGroup}}/v2.0/companies({{companies.response.body.value[0].id}})/{{EntitySetName}}({id})
+PATCH {{baseUrl}}/v2.0/{{tenant}}/api/{{aPIPublisher}}/{{aPIGroup}}/v2.0/companies({{@companyId}})/{{EntitySetName}}({id})
 Authorization: Bearer {{token}}
 
 ### DELETE
-DELETE {{baseUrl}}/v2.0/{{tenant}}/api/{{aPIPublisher}}/{{aPIGroup}}/v2.0/companies({{companies.response.body.value[0].id}})/{{EntitySetName}}({id})
+DELETE {{baseUrl}}/v2.0/{{tenant}}/api/{{aPIPublisher}}/{{aPIGroup}}/v2.0/companies({{@companyId}})/{{EntitySetName}}({id})
 Authorization: Bearer {{token}}
 
 ### GET configurationPackages
-### Instead of using "{{companies.response.body.value[0].id}}", it's possible to use companyId like "3ac0aadc-5ae6-ee11-a201-6045bde98aeb"
 # @name configurationPackages
-GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/configurationPackages
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{@companyId}})/configurationPackages
 Authorization: Bearer {{token}}
 
 ### GET automationCompanies
 # @name automationCompanies
-GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/automationCompanies
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{@companyId}})/automationCompanies
 Authorization: Bearer {{token}}
 
 ### GET extensions
 # @name extensions
-GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/extensions
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{@companyId}})/extensions
 Authorization: Bearer {{token}}
 
 ### GET userGroups
 # @name userGroups
-GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/userGroups
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{@companyId}})/userGroups
 Authorization: Bearer {{token}}
 
 ### GET users
 # @name users
-GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})//users
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{@companyId}})//users
 Authorization: Bearer {{token}}
 
 ### GET permissionSets
 # @name permissionSets
-GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/permissionSets
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{@companyId}})/permissionSets
 Authorization: Bearer {{token}}
 
 ### GET extensionUpload
 # @name extensionUpload
-GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/extensionUpload
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{@companyId}})/extensionUpload
 Authorization: Bearer {{token}}
 
 ### GET extensionDeploymentStatus
 # @name extensionDeploymentStatus
-GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/extensionDeploymentStatus
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{@companyId}})/extensionDeploymentStatus
 Authorization: Bearer {{token}}
 
 ### GET userGroupMembers	
 # @name userGroupMembers
-GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/users(a04f43ef-62ee-41a9-83ca-1985be480687)/userGroupMembers
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{@companyId}})/users(a04f43ef-62ee-41a9-83ca-1985be480687)/userGroupMembers
 Authorization: Bearer {{token}}
 
 ### GET userPermissions	
 # @name userPermissions
-GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/users(a04f43ef-62ee-41a9-83ca-1985be480687)/userPermissions
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{@companyId}})/users(a04f43ef-62ee-41a9-83ca-1985be480687)/userPermissions
 Authorization: Bearer {{token}}
 
 ### GET scheduledJobs	
 # @name scheduledJobs
-GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/scheduledJobs
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{@companyId}})/scheduledJobs
 Authorization: Bearer {{token}}
 
 ### GET profiles	
 # @name profiles
-GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/profiles
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{@companyId}})/profiles
 Authorization: Bearer {{token}}
 
 ### GET userGroupPermissions	
 # @name userGroupPermissions
-GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/userGroupPermissions
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{@companyId}})/userGroupPermissions
 Authorization: Bearer {{token}}
 
 ### GET reportLabels
 # @name reportLabels
-GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api//microsoft/powerbi/v2.0/companies({{companies.response.body.value[0].id}})/reportLabels 
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api//microsoft/powerbi/v2.0/companies({{@companyId}})/reportLabels 
 Authorization: Bearer {{token}}
 
 ### GET securityGroupMembers	
 # @name securityGroupMembers
-GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/securityGroupMembers
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{@companyId}})/securityGroupMembers
 Authorization: Bearer {{token}}
 
 ### GET securityGroups	
 # @name securityGroups
-GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{companies.response.body.value[0].id}})/securityGroups
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/microsoft/automation/v2.0/companies({{@companyId}})/securityGroups
 Authorization: Bearer {{token}}
 
 ### GET items
 # @name items
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/items?$select=number,displayName,type,inventory,baseUnitOfMeasureCode,unitCost,unitPrice &$top=15
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/items?$select=number,displayName,type,inventory,baseUnitOfMeasureCode,unitCost,unitPrice &$top=15
 Authorization: Bearer {{token}}
 
 ### GET customers
 # @name customers
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/customers?$select=number,displayName,type,country,phoneNumber,balanceDue &$top=5
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/customers?$select=number,displayName,type,country,phoneNumber,balanceDue &$top=5
 Authorization: Bearer {{token}}
 
 ### GET vendors
 # @name vendors
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/vendors?$select=number,displayName,country,phoneNumber,balance &$top=10
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/vendors?$select=number,displayName,country,phoneNumber,balance &$top=10
 Authorization: Bearer {{token}}
 
 ### GET companyInformation
 # @name companyInformation
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/companyInformation?$select=displayName,country,phoneNumber,currencyCode,currentFiscalYearStartDate
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/companyInformation?$select=displayName,country,phoneNumber,currencyCode,currentFiscalYearStartDate
 Authorization: Bearer {{token}}
 
 ### GET salesInvoices
 # @name salesInvoices
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/salesInvoices?$select=number,customerNumber,customerName,externalDocumentNumber,shipToContact,postingDate,sellToCountry,invoiceDate,totalAmountIncludingTax &$orderby=postingDate desc&$top=5
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/salesInvoices?$select=number,customerNumber,customerName,externalDocumentNumber,shipToContact,postingDate,sellToCountry,invoiceDate,totalAmountIncludingTax &$orderby=postingDate desc&$top=5
 Authorization: Bearer {{token}}
 
 ### GET customerPaymentJournals	
 # @name customerPaymentJournals
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/customerPaymentJournals?$select=code,displayName,balancingAccountNumber
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/customerPaymentJournals?$select=code,displayName,balancingAccountNumber
 Authorization: Bearer {{token}}
 
 ### GET accounts	
 # @name accounts
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/accounts?$select=number,displayName,blocked,accountType,consolidationTranslationMethod & $filter=accountType eq 'Heading'
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/accounts?$select=number,displayName,blocked,accountType,consolidationTranslationMethod & $filter=accountType eq 'Heading'
 Authorization: Bearer {{token}}
 
 ### GET taxGroups	
 # @name taxGroups
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/taxGroups?$select=code,displayName,taxType
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/taxGroups?$select=code,displayName,taxType
 Authorization: Bearer {{token}}
 
 ### GET journals	
 # @name journals
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/journals?$select=code,displayName,templateDisplayName,balancingAccountNumber
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/journals?$select=code,displayName,templateDisplayName,balancingAccountNumber
 Authorization: Bearer {{token}}
 
 ### GET employees	
 # @name employees
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/employees?$select=number,givenName,surname,jobTitle,phoneNumber
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/employees?$select=number,givenName,surname,jobTitle,phoneNumber
 Authorization: Bearer {{token}}
 
 ### GET generalLedgerEntries	
 # @name generalLedgerEntries
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/generalLedgerEntries?$select=postingDate,documentType,documentNumber,accountNumber,debitAmount,creditAmount,description &$orderby=postingDate desc&$top=100
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/generalLedgerEntries?$select=postingDate,documentType,documentNumber,accountNumber,debitAmount,creditAmount,description &$orderby=postingDate desc&$top=100
 Authorization: Bearer {{token}}
 
 ### GET currencies	
 # @name currencies
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/currencies?$select=code,displayName,amountRoundingPrecision
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/currencies?$select=code,displayName,amountRoundingPrecision
 Authorization: Bearer {{token}}
 
 ### GET paymentMethods	
 # @name paymentMethods
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/paymentMethods?$select=code,displayName
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/paymentMethods?$select=code,displayName
 Authorization: Bearer {{token}}
 
 ### GET dimensions	
 # @name dimensions
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/dimensions?$select=code,displayName
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/dimensions?$select=code,displayName
 Authorization: Bearer {{token}}
 
 ### GET dimensionSetLines_Sales Orders	
 # @name dimensionSetLines_SalesOrders
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/salesOrders(7839134c-5ce6-ee11-a201-6045bde98aeb)/dimensionSetLines?$select=code,parentType,displayName,valueCode,valueDisplayName
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/salesOrders(7839134c-5ce6-ee11-a201-6045bde98aeb)/dimensionSetLines?$select=code,parentType,displayName,valueCode,valueDisplayName
 Authorization: Bearer {{token}}
 
 ### GET dimensionSetLines_salesQuotes
 # @name dimensionSetLines_salesQuotes
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/salesQuotes(9d738bda-5be6-ee11-a201-6045bde98aeb)/dimensionSetLines?$select=code,parentType,displayName,valueCode,valueDisplayName
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/salesQuotes(9d738bda-5be6-ee11-a201-6045bde98aeb)/dimensionSetLines?$select=code,parentType,displayName,valueCode,valueDisplayName
 Authorization: Bearer {{token}}
 
 ### GET dimensionSetLines_salesInvoices
 # @name dimensionSetLines_salesInvoices
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/salesInvoices(37758bda-5be6-ee11-a201-6045bde98aeb)/dimensionSetLines?$select=code,parentType,displayName,valueCode,valueDisplayName
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/salesInvoices(37758bda-5be6-ee11-a201-6045bde98aeb)/dimensionSetLines?$select=code,parentType,displayName,valueCode,valueDisplayName
 Authorization: Bearer {{token}}
 
 ### GET dimensionSetLines_salesShipments	
 # @name dimensionSetLines_salesShipments
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/salesShipments(7a5dcf01-5ce6-ee11-a201-6045bde98aeb)/dimensionSetLines?$select=code,parentType,displayName,valueCode,valueDisplayName
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/salesShipments(7a5dcf01-5ce6-ee11-a201-6045bde98aeb)/dimensionSetLines?$select=code,parentType,displayName,valueCode,valueDisplayName
 Authorization: Bearer {{token}}
 
 ### GET paymentTerms	
 # @name paymentTerms
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/paymentTerms?$select=code,dueDateCalculation,discountDateCalculation,discountPercent,calculateDiscountOnCreditMemos,displayName
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/paymentTerms?$select=code,dueDateCalculation,discountDateCalculation,discountPercent,calculateDiscountOnCreditMemos,displayName
 Authorization: Bearer {{token}}
 
 ### GET shipmentMethods	
 # @name shipmentMethods
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/shipmentMethods?$select=code,displayName
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/shipmentMethods?$select=code,displayName
 Authorization: Bearer {{token}}
 
 ### GET itemCategories	
 # @name itemCategories
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/itemCategories?$select=code,displayName
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/itemCategories?$select=code,displayName
 Authorization: Bearer {{token}}
 
 ### GET cashFlowStatements	
 # @name cashFlowStatements
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/cashFlowStatements?$select=lineNumber,display,lineType &$filter=lineType eq 'header'
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/cashFlowStatements?$select=lineNumber,display,lineType &$filter=lineType eq 'header'
 Authorization: Bearer {{token}}
 
 ### GET countriesRegions	
 # @name countriesRegions
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/countriesRegions?$select=code,displayName
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/countriesRegions?$select=code,displayName
 Authorization: Bearer {{token}}
 
 ### GET salesOrders	
 # @name salesOrders
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/salesOrders?$select=number,customerNumber,shipToName,externalDocumentNumber,totalTaxAmount,totalAmountIncludingTax & $filter=customerNumber eq '10000'
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/salesOrders?$select=number,customerNumber,shipToName,externalDocumentNumber,totalTaxAmount,totalAmountIncludingTax & $filter=customerNumber eq '10000'
 Authorization: Bearer {{token}}
 
 ### GET retainedEarningsStatements	
 # @name retainedEarningsStatements
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/retainedEarningsStatements?$select=display,netChange,lineType,dateFilter
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/retainedEarningsStatements?$select=display,netChange,lineType,dateFilter
 Authorization: Bearer {{token}}
 
 ### GET unitsOfMeasure	
 # @name unitsOfMeasure
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/unitsOfMeasure?$select=code,displayName,internationalStandardCode
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/unitsOfMeasure?$select=code,displayName,internationalStandardCode
 Authorization: Bearer {{token}}
 
 ### GET agedAccountsReceivables	
 # @name agedAccountsReceivables
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/agedAccountsReceivables?$select=customerNumber,name,balanceDue,currentAmount,period1Amount,period2Amount,period3Amount & $filter=customerNumber eq '10000'
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/agedAccountsReceivables?$select=customerNumber,name,balanceDue,currentAmount,period1Amount,period2Amount,period3Amount & $filter=customerNumber eq '10000'
 Authorization: Bearer {{token}}
 
 ### GET agedAccountsPayables	
 # @name agedAccountsPayables
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/agedAccountsPayables?$select=vendorNumber,name,balanceDue,currentAmount,period1Amount,period2Amount,period3Amount & $filter=vendorNumber eq '10000'
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/agedAccountsPayables?$select=vendorNumber,name,balanceDue,currentAmount,period1Amount,period2Amount,period3Amount & $filter=vendorNumber eq '10000'
 Authorization: Bearer {{token}}
 
 ### GET balanceSheets	
 # @name balanceSheets
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/balanceSheets?$select=display,balance,lineType & $filter=lineType eq 'detail'
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/balanceSheets?$select=display,balance,lineType & $filter=lineType eq 'detail'
 Authorization: Bearer {{token}}
 
 ### GET trialBalances	
 # @name trialBalances
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/trialBalances?$select=number,accountType,display,balanceAtDateDebit,balanceAtDateCredit & $filter=accountType eq 'Posting'
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/trialBalances?$select=number,accountType,display,balanceAtDateDebit,balanceAtDateCredit & $filter=accountType eq 'Posting'
 Authorization: Bearer {{token}}
 
 ### GET incomeStatements	
 # @name incomeStatements
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/incomeStatements?$select=lineNumber,display,netChange,lineType,indentation,dateFilter & $top=25
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/incomeStatements?$select=lineNumber,display,netChange,lineType,indentation,dateFilter & $top=25
 Authorization: Bearer {{token}}
 
 ### GET taxAreas	
 # @name taxAreas
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/taxAreas?$select=code,displayName,taxType
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/taxAreas?$select=code,displayName,taxType
 Authorization: Bearer {{token}}
 
 ### GET salesQuotes	
 # @name salesQuotes
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/salesQuotes?$select=number,customerNumber,customerName,shipToContact,postingDate,dueDate,totalAmountExcludingTax
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/salesQuotes?$select=number,customerNumber,customerName,shipToContact,postingDate,dueDate,totalAmountExcludingTax
 Authorization: Bearer {{token}}
 
 ### GET salesCreditMemos	
 # @name salesCreditMemos
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/salesCreditMemos?$select=number,customerNumber,customerName,postingDate,dueDate,totalAmountExcludingTax
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/salesCreditMemos?$select=number,customerNumber,customerName,postingDate,dueDate,totalAmountExcludingTax
 Authorization: Bearer {{token}}
 
 ### GET attachments	
 # @name attachments
-GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/attachments?$filter=parentId eq 79e09ace-5be6-ee11-a201-6045bde98aeb & parentType eq 'Journal'
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/v2.0/companies({{@companyId}})/attachments?$filter=parentId eq 79e09ace-5be6-ee11-a201-6045bde98aeb & parentType eq 'Journal'
 Authorization: Bearer {{token}}
 
 ### GET dimensionValues	
 # @name dimensionValues
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/dimensionValues?$top=20
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/dimensionValues?$top=20
 Authorization: Bearer {{token}}
 
 ### GET timeRegistrationEntries	
 # @name timeRegistrationEntries
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/employees(bfc7f4ef-5be6-ee11-a201-6045bde98aeb)/timeRegistrationEntries
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/employees(bfc7f4ef-5be6-ee11-a201-6045bde98aeb)/timeRegistrationEntries
 Authorization: Bearer {{token}}
 
 ### GET purchaseInvoices	
 # @name purchaseInvoices
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/purchaseInvoices?$select=number,vendorNumber,vendorName,vendorInvoiceNumber,totalAmountExcludingTax
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/purchaseInvoices?$select=number,vendorNumber,vendorName,vendorInvoiceNumber,totalAmountExcludingTax
 Authorization: Bearer {{token}}
 
 ### GET salesInvoiceLines	
 # @name salesInvoiceLines
-GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/salesInvoices?$select=number&$filter=number eq '102200'&$expand=salesInvoiceLines
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/v2.0/companies({{@companyId}})/salesInvoices?$select=number&$filter=number eq '102200'&$expand=salesInvoiceLines
 Authorization: Bearer {{token}}  
 
 ### GET salesOrderLines	
 # @name salesOrderLines
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/salesOrders?$select=number&$filter=number eq '101006'&$expand=salesOrderLines
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/salesOrders?$select=number&$filter=number eq '101006'&$expand=salesOrderLines
 Authorization: Bearer {{token}}
 
 ### GET salesQuoteLines	
 # @name salesQuoteLines
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/salesQuotes?$select=number&$filter=number eq '1001'&$expand=salesQuoteLines
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/salesQuotes?$select=number&$filter=number eq '1001'&$expand=salesQuoteLines
 Authorization: Bearer {{token}}
 
 ### GET salesCreditMemoLines	
 # @name salesCreditMemoLines
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/salesCreditMemos?$select=number&$filter=number eq '1001'&$expand=salesCreditMemoLines
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/salesCreditMemos?$select=number&$filter=number eq '1001'&$expand=salesCreditMemoLines
 Authorization: Bearer {{token}}
 
 ### GET purchaseInvoiceLines	
 # @name purchaseInvoiceLines
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/purchaseInvoices?$select=number&$filter=number eq '107209'&$expand=purchaseInvoiceLines
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/purchaseInvoices?$select=number&$filter=number eq '107209'&$expand=purchaseInvoiceLines
 Authorization: Bearer {{token}}
 
 ### GET customerFinancialDetails	
 # @name customerFinancialDetails
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/customerFinancialDetails?$select=number,balance,totalSalesExcludingTax,overdueAmount
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/customerFinancialDetails?$select=number,balance,totalSalesExcludingTax,overdueAmount
 Authorization: Bearer {{token}}
 
 ### GET journalLines	
 # @name journalLines
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/journals?$filter=id eq 79e09ace-5be6-ee11-a201-6045bde98aeb &$expand=journalLines
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/journals?$filter=id eq 79e09ace-5be6-ee11-a201-6045bde98aeb &$expand=journalLines
 Authorization: Bearer {{token}}
 
 ### GET projects	
 # @name projects
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/projects?$select=number,displayName
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/projects?$select=number,displayName
 Authorization: Bearer {{token}}
 
 ### GET bankAccounts	
 # @name bankAccounts
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/bankAccounts?$select=number,displayName,bankAccountNumber,blocked,currencyCode
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/bankAccounts?$select=number,displayName,bankAccountNumber,blocked,currencyCode
 Authorization: Bearer {{token}}
 
 ### GET itemVariants	
 # @name itemVariants
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/itemVariants?$select=itemNumber,code,description
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/itemVariants?$select=itemNumber,code,description
 Authorization: Bearer {{token}}
 
 ### GET pictureItems
 # @name pictureItems
-GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/items(ee0ca812-ee23-ef11-9f88-7c1e5204ac30)/picture?$select=parentType,width,height,contentType
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/v2.0/companies({{@companyId}})/items(ee0ca812-ee23-ef11-9f88-7c1e5204ac30)/picture?$select=parentType,width,height,contentType
 Authorization: Bearer {{token}}
 
 ### GET pictureEmployees
 # @name pictureEmployees
-GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/employees(bfc7f4ef-5be6-ee11-a201-6045bde98aeb)/picture?$select=parentType,width,height,contentType
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/v2.0/companies({{@companyId}})/employees(bfc7f4ef-5be6-ee11-a201-6045bde98aeb)/picture?$select=parentType,width,height,contentType
 Authorization: Bearer {{token}}
 
 ### GET pictureVendors	
 # @name pictureVendors
-GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/vendors(7edb9ace-5be6-ee11-a201-6045bde98aeb)/picture?$select=parentType,width,height,contentType
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/v2.0/companies({{@companyId}})/vendors(7edb9ace-5be6-ee11-a201-6045bde98aeb)/picture?$select=parentType,width,height,contentType
 Authorization: Bearer {{token}}
 
 ### GET pictureCustomers	
 # @name pictureCustomers
-GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/customers(79db9ace-5be6-ee11-a201-6045bde98aeb)/picture?$select=parentType,width,height,contentType
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/v2.0/companies({{@companyId}})/customers(79db9ace-5be6-ee11-a201-6045bde98aeb)/picture?$select=parentType,width,height,contentType
 Authorization: Bearer {{token}}
 
 ### GET pictureContacts	
 # @name pictureContacts
-GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/contacts(67de9ace-5be6-ee11-a201-6045bde98aeb)/picture?$select=parentType,width,height,contentType
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/v2.0/companies({{@companyId}})/contacts(67de9ace-5be6-ee11-a201-6045bde98aeb)/picture?$select=parentType,width,height,contentType
 Authorization: Bearer {{token}}
 
 ### GET defaultDimensions	
 # @name defaultDimensions
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/defaultDimensions?$select=parentType,dimensionCode,dimensionValueCode
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/defaultDimensions?$select=parentType,dimensionCode,dimensionValueCode
 Authorization: Bearer {{token}}
 
 ### GET customerPayments	
 # @name customerPayments
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/customerPayments
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/customerPayments
 Authorization: Bearer {{token}}
 
 ### GET pdfDocument_SalesInvoives	
 # @name pdfDocument_SalesInvoives
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/salesInvoices(37758bda-5be6-ee11-a201-6045bde98aeb)/pdfDocument
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/salesInvoices(37758bda-5be6-ee11-a201-6045bde98aeb)/pdfDocument
 Authorization: Bearer {{token}}
 
 ### GET pdfDocument_SalesQuotes
 # @name pdfDocument_SalesQuotes
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/salesQuotes(9d738bda-5be6-ee11-a201-6045bde98aeb)/pdfDocument
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/salesQuotes(9d738bda-5be6-ee11-a201-6045bde98aeb)/pdfDocument
 Authorization: Bearer {{token}}
 
 ### GET vendorPayments	
 # @name vendorPayments
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/vendorPayments
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/vendorPayments
 Authorization: Bearer {{token}}
 
 ### GET vendorPaymentJournals	
 # @name vendorPaymentJournals
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/vendorPaymentJournals?$select=code,displayName,balancingAccountId,balancingAccountNumber
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/vendorPaymentJournals?$select=code,displayName,balancingAccountId,balancingAccountNumber
 Authorization: Bearer {{token}}
 
 ### GET salesShipments	
 # @name salesShipments
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/salesShipments?$select=number,customerNumber,customerName,currencyCode&$top=2
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/salesShipments?$select=number,customerNumber,customerName,currencyCode&$top=2
 Authorization: Bearer {{token}}
 
 ### GET salesShipmentLines	
 # @name salesShipmentLines
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/salesShipments?$filter=number eq '102001'&$select=number&$expand=salesShipmentLines
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/salesShipments?$filter=number eq '102001'&$select=number&$expand=salesShipmentLines
 Authorization: Bearer {{token}}
 
 ### GET purchaseReceipts	
 # @name purchaseReceipts
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/purchaseReceipts?$select=number,vendorNumber,vendorName&$top=15
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/purchaseReceipts?$select=number,vendorNumber,vendorName&$top=15
 Authorization: Bearer {{token}}
 
 ### GET purchaseReceiptLines	
 # @name purchaseReceiptLines
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/purchaseReceipts?$filter=number eq '107001'&$select=number&$expand=purchaseReceiptLines
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/purchaseReceipts?$filter=number eq '107001'&$select=number&$expand=purchaseReceiptLines
 Authorization: Bearer {{token}}
 
 ### GET purchaseOrders	
 # @name purchaseOrders
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/purchaseOrders?$select=number,orderDate,postingDate,vendorName&$top=10
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/purchaseOrders?$select=number,orderDate,postingDate,vendorName&$top=10
 Authorization: Bearer {{token}}
 
 ### GET purchaseOrderLines	
 # @name purchaseOrderLines
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/purchaseOrders?$filter=number eq '106001'&$expand=purchaseOrderLines
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/purchaseOrders?$filter=number eq '106001'&$expand=purchaseOrderLines
 Authorization: Bearer {{token}}
 
 ### GET itemLedgerEntries	
 # @name itemLedgerEntries
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/itemLedgerEntries?$select=postingDate,entryType,documentType,itemNumber,description,quantity,salesAmountActual,costAmountActual&$top=10
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/itemLedgerEntries?$select=postingDate,entryType,documentType,itemNumber,description,quantity,salesAmountActual,costAmountActual&$top=10
 Authorization: Bearer {{token}}
 
 ### GET opportunities	
 # @name opportunities
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/opportunities?$select=number,closed,description,contactNumber,salespersonCode,status,estimatedClosingDate,estimatedValue,calculatedCurrentValue&$top=10
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/opportunities?$select=number,closed,description,contactNumber,salespersonCode,status,estimatedClosingDate,estimatedValue,calculatedCurrentValue&$top=10
 Authorization: Bearer {{token}}
 
 ### GET contacts	
 # @name contacts
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/contacts?$select=number,displayName,companyName,contactBusinessRelation,mobilePhoneNumber,email&$top=10
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/contacts?$select=number,displayName,companyName,contactBusinessRelation,mobilePhoneNumber,email&$top=10
 Authorization: Bearer {{token}}
 
 ### GET Contact Information_BankAccount	
 # @name ContactInformation_BankAccount
-GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/contactsInformation?$filter=relatedId eq 7bdd9ace-5be6-ee11-a201-6045bde98aeb and relatedType eq 'Bank Account'
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/v2.0/companies({{@companyId}})/contactsInformation?$filter=relatedId eq 7bdd9ace-5be6-ee11-a201-6045bde98aeb and relatedType eq 'Bank Account'
 Authorization: Bearer {{token}}
 
 ### GET Contact Information_Employee
 # @name ContactInformation_Employee
-GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/contactsInformation?$filter=relatedId eq bfc7f4ef-5be6-ee11-a201-6045bde98aeb and relatedType eq 'Employee'
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/v2.0/companies({{@companyId}})/contactsInformation?$filter=relatedId eq bfc7f4ef-5be6-ee11-a201-6045bde98aeb and relatedType eq 'Employee'
 Authorization: Bearer {{token}}
 
 ### GET Contact Information_Customer	
 # @name ContactInformation_Customer
-GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/customers(79db9ace-5be6-ee11-a201-6045bde98aeb)/contactsInformation?$select=contactNumber,contactName,contactType
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/v2.0/companies({{@companyId}})/customers(79db9ace-5be6-ee11-a201-6045bde98aeb)/contactsInformation?$select=contactNumber,contactName,contactType
 Authorization: Bearer {{token}}
 
 ### GET Contact Information_Vendor	
 # @name ContactInformation_Vendor
-GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/vendors(7edb9ace-5be6-ee11-a201-6045bde98aeb)/contactsInformation?$select=contactNumber,contactName,contactType
+GET {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/api/v2.0/companies({{@companyId}})/vendors(7edb9ace-5be6-ee11-a201-6045bde98aeb)/contactsInformation?$select=contactNumber,contactName,contactType
 Authorization: Bearer {{token}}
 
 ### GET applyVendorEntries	
 # @name applyVendorEntries
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/applyVendorEntries
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/applyVendorEntries
 Authorization: Bearer {{token}}
 
 ### GET locations	
 # @name locations
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/locations?$select=code,displayName&$top=10
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/locations?$select=code,displayName&$top=10
 Authorization: Bearer {{token}}
 
 ### GET customerReturnReasons	
 # @name customerReturnReasons
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/customerReturnReasons
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/customerReturnReasons
 Authorization: Bearer {{token}}
 
 ### GET generalProductPostingGroups	
 # @name generalProductPostingGroups
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/generalProductPostingGroups?$select=code,description,defaultVATProductPostingGroup,autoInsertDefault
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/generalProductPostingGroups?$select=code,description,defaultVATProductPostingGroup,autoInsertDefault
 Authorization: Bearer {{token}}
 
 ### GET documentAttachments	
 # @name documentAttachments
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/documentAttachments?$select=fileName,byteSize,parentType,lineNumber&?top=15
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/documentAttachments?$select=fileName,byteSize,parentType,lineNumber&?top=15
 Authorization: Bearer {{token}}
 
 ### GET purchaseCreditMemos	
 # @name purchaseCreditMemos
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/purchaseCreditMemos?$select=number,payToVendorNumber,vendorName,vendorNumber,totalAmountExcludingTax
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/purchaseCreditMemos?$select=number,payToVendorNumber,vendorName,vendorNumber,totalAmountExcludingTax
 Authorization: Bearer {{token}}
 
 ### GET purchaseCreditMemoLines	
 # @name purchaseCreditMemoLines
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/purchaseCreditMemoLines
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/purchaseCreditMemoLines
 Authorization: Bearer {{token}}
 
 ### GET currencyExchangeRates	
 # @name currencyExchangeRates
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/currencyExchangeRates?$select=currencyCode,startingDate,exchangeRateAmount,relationalCurrencyCode,relationalExchangeRateAmount&$top=25
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/currencyExchangeRates?$select=currencyCode,startingDate,exchangeRateAmount,relationalCurrencyCode,relationalExchangeRateAmount&$top=25
 Authorization: Bearer {{token}}
 
 ### GET accountingPeriods	
 # @name accountingPeriods
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/accountingPeriods?$select=startingDate,name,newFiscalYear,closed,dateLocked&$top=25
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/accountingPeriods?$select=startingDate,name,newFiscalYear,closed,dateLocked&$top=25
 Authorization: Bearer {{token}}
 
 ### GET generalLedgerSetup	
 # @name generalLedgerSetup
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/generalLedgerSetup
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/generalLedgerSetup
 Authorization: Bearer {{token}}
 
 ### GET disputeStatus	
 # @name disputeStatus
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/disputeStatus
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/disputeStatus
 Authorization: Bearer {{token}}
 
 ### GET customerContacts	
 # @name customerContacts
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/customerContacts?$select=email,firstName,lastName,customerName
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/customerContacts?$select=email,firstName,lastName,customerName
 Authorization: Bearer {{token}}
 
 ### GET inventoryPostingGroups	
 # @name inventoryPostingGroups
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/inventoryPostingGroups?$select=code, description
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/inventoryPostingGroups?$select=code, description
 Authorization: Bearer {{token}}
 
 ### GET fixedAssetLocations	
 # @name fixedAssetLocations
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/fixedAssetLocations?$select=code,displayName
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/fixedAssetLocations?$select=code,displayName
 Authorization: Bearer {{token}}
 
 ### GET fixedAssets	
 # @name fixedAssets
-GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companies.response.body.value[0].id}})/fixedAssets?$select=number,displayName,employeeNumber,classCode, subClassCode,fixedAssetLocationCode
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{@companyId}})/fixedAssets?$select=number,displayName,employeeNumber,classCode, subClassCode,fixedAssetLocationCode
 Authorization: Bearer {{token}}

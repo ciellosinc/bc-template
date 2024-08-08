@@ -66,7 +66,7 @@ In VSCode you need to set the variables:
 - scope = https://api.businesscentral.dynamics.com/.default
 - tenant = Define your tenant Id
 - environmentName = Define your Environment Name
-- companyId = Define the GUID of the company you want to use in the endpoints}
+- companyId = Define the GUID of the company you want to use in the endpoints
 - baseODataUrl = {{baseUrl}}/v2.0/{{tenant}}/{{environmentName}}/ODataV4/Company('{{companyId}}')
 
 After you define the variables, you can Send Request in the tokenrequest. Then you will have your token authenticated.
