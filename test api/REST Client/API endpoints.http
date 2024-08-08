@@ -1,0 +1,140 @@
+//TODO Insert the corresponding values to the variables
+@clientid = ##Here you can input ClientID value
+@clientsecret = ##Here you can input Client Secret
+@scope = https://api.businesscentral.dynamics.com/.default
+@tenant = ##Here you can input TenantID value
+@environmentName = ##Here you can input environmentName value
+@entitySetName = ##Here you can input entitySetName value
+@pageSize = ##Here you can input pageSize value
+
+###########################################################################
+#    ____      _                                   _        _              
+#   / ___| ___| |_    __ _  ___ ___ ___  ___ ___  | |_ ___ | | _____ _ __  
+#  | |  _ / _ \ __|  / _` |/ __/ __/ _ \/ __/ __| | __/ _ \| |/ / _ \ '_ \ 
+#  | |_| |  __/ |_  | (_| | (_| (_|  __/\__ \__ \ | || (_) |   <  __/ | | |
+#   \____|\___|\__|  \__,_|\___\___\___||___/___/  \__\___/|_|\_\___|_| |_|
+#
+###########################################################################
+# @name tokenrequest
+POST https://login.microsoftonline.com/{{tenant}}/oauth2/v2.0/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id={{clientid}}
+&client_secret={{clientsecret}}
+&scope={{scope}}
+###
+@token = {{tokenrequest.response.body.access_token}}
+###
+@baseUrl = https://api.businesscentral.dynamics.com
+##############################################################################
+### GET all APIs
+# @name allApi
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/
+Authorization: Bearer {{token}}
+#
+
+### GET $metadata
+# @name $metadata
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/$metadata
+Authorization: Bearer {{token}}
+#
+
+### GET companies
+# @name companies
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies
+Authorization: Bearer {{token}}
+###
+//This value inside [] to get correct company. By default company at position 0 is retrieved.
+@companyId = {{companies.response.body.value[0].id}}
+#
+
+### GET items
+### Instead of using "{{companies.response.body.value[0].id}}", it's possible to use companyId like "3ac0aadc-5ae6-ee11-a201-6045bde98aeb"
+# @name items
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companyId}})/{{entitySetName}}
+Authorization: Bearer {{token}}
+#
+
+### GET items with select, top and skip
+# @name itemsSelect
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companyId}})/{{entitySetName}}?$select=number,displayName,unitCost&$top=5&$skip=10
+Authorization: Bearer {{token}}
+#
+
+### GET items using filters
+# @name itemsFilter
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companyId}})/{{entitySetName}}?$filter=type eq 'Inventory' and unitPrice lt 125.1
+Authorization: Bearer {{token}}
+#
+
+### GET items using orderby
+# also possible to use desc
+# @name itemsSort
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companyId}})/{{entitySetName}}?$orderby=displayName asc
+Authorization: Bearer {{token}}
+#
+
+### GET items using pagination
+# @name itemsPagination
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companyId}})/{{entitySetName}}
+Authorization: Bearer {{token}}
+Prefer: odata.maxpagesize={{pageSize}}
+#
+
+### GET items odata.nextLink
+# @name odatanextLink
+GET <Copy odata.nextLink>
+Authorization: Bearer {{token}}
+#
+
+### GET recordset count - count how many items
+# @name countItems
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companyId}})/{{entitySetName}}?$count=true
+Authorization: Bearer {{token}}
+#
+
+### GET salesOrders
+# @name salesOrders
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companyId}})/salesOrders
+Authorization: Bearer {{token}}
+#
+
+### GET sales order expanding sales order lines
+# @name salesOrderLines
+GET {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companyId}})/salesOrders?$filter=number eq '101006'&$expand=salesOrderLines
+Authorization: Bearer {{token}}
+#
+
+### POST Item
+@itemsUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companyId}})/{{entitySetName}}
+POST {{itemsUrl}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "displayName": "Test3"
+}
+###
+#
+
+### PATCH Item
+### It's possible to use Item id instead of {{items.response.body.value[1].id}}
+@patchItemsUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companyId}})/{{entitySetName}}({{items.response.body.value[1].id}})
+PATCH {{patchItemsUrl}}
+If-Match: *
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+    "displayName2": "Test2"
+}
+###
+#
+
+### DELETE Item
+@deleteItemsUrl = {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies({{companyId}})/{{entitySetName}}({{items.response.body.value[1].id}})
+DELETE {{deleteItemsUrl}}
+Authorization: Bearer {{token}}
+###
+#

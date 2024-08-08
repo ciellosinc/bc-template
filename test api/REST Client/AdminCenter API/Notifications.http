@@ -1,0 +1,71 @@
+//TODO Insert the corresponding values to the variables
+@clientid = ##Here you can input ClientID value
+@clientsecret = ##Here you can input Client Secret value
+@scope = https://api.businesscentral.dynamics.com/.default
+@tenant = ##Here you can input TenantID value
+@environmentName = ##Here you can input environmentName value
+@applicationFamily = ##Here you can input applicationFamily value
+@callbackUrl = https://businesscentral.dynamics.com/OAuthLanding.htm
+@authUrl = https://login.microsoftonline.com/{{tenant}}/oauth2/v2.0/authorize
+@accessTokenUrl = https://login.microsoftonline.com/{{tenant}}/oauth2/v2.0/token
+@recipientId = ##Here you can input recipientId value
+
+###########################################################################
+#    ____      _                                   _        _              
+#   / ___| ___| |_    __ _  ___ ___ ___  ___ ___  | |_ ___ | | _____ _ __  
+#  | |  _ / _ \ __|  / _` |/ __/ __/ _ \/ __/ __| | __/ _ \| |/ / _ \ '_ \ 
+#  | |_| |  __/ |_  | (_| | (_| (_|  __/\__ \__ \ | || (_) |   <  __/ | | |
+#   \____|\___|\__|  \__,_|\___\___\___||___/___/  \__\___/|_|\_\___|_| |_|
+#
+###########################################################################
+# @name tokenrequest
+POST https://login.microsoftonline.com/{{tenant}}/oauth2/v2.0/token
+Content-Type: application/x-www-form-urlencoded
+#HTTP/1.1
+
+grant_type=client_credentials
+#grant_type=authorization_code
+
+&client_id={{clientid}}
+&client_secret={{clientsecret}}
+&scope={{scope}}
+&callbackUrl={{callbackUrl}}
+#&authUrl={{authUrl}}
+#&accessTokenUrl={{accessTokenUrl}}
+
+###
+@token = Bearer {{tokenrequest.response.body.access_token}}
+###
+@baseUrl = https://api.businesscentral.dynamics.com
+##############################################################################
+### GET notification recipients
+# @name notificationRecipients
+GET {{baseUrl}}/admin/v2.21/settings/notification/recipients
+Authorization: {{token}} 
+#
+
+### GET notification settings
+# @name notificationSettings
+GET {{baseUrl}}/admin/v2.21/settings/notification/
+Authorization: {{token}}
+#
+
+### PUT Create Notification Recipient
+@createUrl = {{baseUrl}}/admin/v2.21/settings/notification/recipients
+PUT {{createUrl}}
+Authorization: {{token}}
+Content-Type: application/json
+
+{
+  "email": string, // Email address of the recipient
+  "name": string // Full name of the recipient
+}
+###
+#
+
+### DELETE Delete notification Recipient
+@deleteUrl = {{baseUrl}}/admin/v2.21/settings/notification/recipients/{{recipientId}}
+DELETE {{deleteUrl}}
+Authorization: {{token}}
+###
+#

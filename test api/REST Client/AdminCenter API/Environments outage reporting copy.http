@@ -1,0 +1,68 @@
+//TODO Insert the corresponding values to the variables
+@clientid = ##Here you can input ClientID value
+@clientsecret = ##Here you can input Client Secret value
+@scope = https://api.businesscentral.dynamics.com/.default
+@tenant = ##Here you can input TenantID value
+@environmentName = ##Here you can input environmentName value
+@outageType = ##Here you can input outageType value
+@applicationFamily = ##Here you can input applicationFamily value
+
+###########################################################################
+#    ____      _                                   _        _              
+#   / ___| ___| |_    __ _  ___ ___ ___  ___ ___  | |_ ___ | | _____ _ __  
+#  | |  _ / _ \ __|  / _` |/ __/ __/ _ \/ __/ __| | __/ _ \| |/ / _ \ '_ \ 
+#  | |_| |  __/ |_  | (_| | (_| (_|  __/\__ \__ \ | || (_) |   <  __/ | | |
+#   \____|\___|\__|  \__,_|\___\___\___||___/___/  \__\___/|_|\_\___|_| |_|
+#
+###########################################################################
+# @name tokenrequest
+POST https://login.microsoftonline.com/{{tenant}}/oauth2/v2.0/token
+Content-Type: application/x-www-form-urlencoded
+
+grant_type=client_credentials
+&client_id={{clientid}}
+&client_secret={{clientsecret}}
+&scope={{scope}}
+###
+@token = {{tokenrequest.response.body.access_token}}
+###
+@baseUrl = https://api.businesscentral.dynamics.com
+##############################################################################
+### Get outage types
+# @name outageTypes
+GET {{baseUrl}}/admin/v2.21/support/outageTypes
+Authorization: Bearer {{token}}
+#
+
+### Get outage questions
+# @name outageQuestions
+GET {{baseUrl}}/admin/v2.21/support/outageTypes/{{outageType}}/outageQuestions
+Authorization: Bearer {{token}}
+#
+
+### Get reported outages
+# @name reportedOutages
+GET {{baseUrl}}/admin/v2.21/support/reportedoutages
+Authorization: Bearer {{token}}
+#
+
+### POST Report outage
+@reportUrl = {{baseUrl}}/admin/v2.21/support/applications/{{applicationFamily}}/environments/{{environmentName}}/reportoutage
+POST {{reportUrl}}
+Authorization: Bearer {{token}}
+Content-Type: application/json
+
+{
+  "outageType": string, // The category of the outage being reported.
+  "outageQuestionAnswers": [{ // The collection of answers to the questions associated with the outage type.
+    "id": string, // The identifier of the question being answered.
+    "answer": string // The answered value of the question.
+  }],
+  ("contact": string), // (Optional) - The name of the person whose to contact with updates on the outage report
+  ("email": string), // (Optional) - An email to contact with updates on the outage report
+  ("phone": string), // (Optional) - A phone number to contact with updates on the outage report
+  ("appVersion": string), // (Optional) - If known, the version of the targeted environment's application 
+  ("platformVersion": string) //(Optional) - If known, the version of the targeted environment's platform
+}
+###
+#
