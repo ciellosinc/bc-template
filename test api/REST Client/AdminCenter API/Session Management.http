@@ -1,10 +1,11 @@
-@clientid = 7e930f8e-fac4-43a6-a242-3a4079ac4553
-@clientsecret = clientSecret
+//TODO Insert the corresponding values to the variables
+@clientid = ##Here you can input ClientID value
+@clientsecret = ##Here you can input Client Secret value
 @scope = https://api.businesscentral.dynamics.com/.default
-@tenant = ffb102fa-38b1-4d6b-ad59-1192df615c1e
-@environmentName = Sandbox1
-@applicationFamily = BusinessCentral
-@sessionId = 
+@tenant = ##Here you can input TenantID value
+@environmentName = ##Here you can input environmentName value
+@applicationFamily = ##Here you can input applicationFamily value
+@sessionId = ##Here you can input sessionId value
 
 ###########################################################################
 #    ____      _                                   _        _              

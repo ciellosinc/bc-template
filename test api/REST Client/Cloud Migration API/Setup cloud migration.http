@@ -1,10 +1,11 @@
-@clientid = 7e930f8e-fac4-43a6-a242-3a4079ac4553
-@clientsecret = clientSecret
+//TODO Insert the corresponding values to the variables
+@clientid = ##Here you can input ClientID value
+@clientsecret = ##Here you can input Client Secret value
 @scope = https://api.businesscentral.dynamics.com/.default
-@tenant = ffb102fa-38b1-4d6b-ad59-1192df615c1e
-@environmentName = Sandbox1
-@businesscentralPrefix =
-@cloudMigrationCompanyId = 
+@tenant = ##Here you can input TenantID value
+@environmentName = ##Here you can input environmentName value
+@businesscentralPrefix = ##Here you can input businesscentralPrefix value
+@cloudMigrationCompanyId = ##Here you can input cloudMigrationCompanyId value
 
 ###########################################################################
 #    ____      _                                   _        _              
@@ -32,6 +33,7 @@ grant_type=client_credentials
 GET  {{baseUrl}}/v2.0/{{environmentName}}/api/v2.0/companies
 Authorization: Bearer {{token}}
 ###
+//This value inside [] to get correct company. By default company at position 0 is retrieved.
 @companyId = {{companies.response.body.value[0].id}}
 #
 
